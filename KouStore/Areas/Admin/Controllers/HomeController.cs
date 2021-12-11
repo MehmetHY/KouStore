@@ -7,7 +7,8 @@ namespace KouStore.Areas.Admin.Controllers
         [Area("admin")]
         public IActionResult Index()
         {
-            return View();
+            string title = "There";
+            return View((object)title);
         }
     }
 }
