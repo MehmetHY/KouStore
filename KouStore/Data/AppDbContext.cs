@@ -9,6 +9,6 @@ namespace KouStore.Data
         {
         }
 
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<AdminModel> Admins { get; set; }
     }
 }

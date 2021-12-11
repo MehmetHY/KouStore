@@ -12,20 +12,28 @@ namespace KouStore.Areas.Admin.Controllers
         {
             _db = db;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View(new LoginModel());
+        }
+        [HttpPost]
+        public IActionResult Index(LoginModel model)
+        {
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Verify(LoginModel model)
         {
-            if (ModelState.IsValid)
+            (bool, Models.AdminModel?) result = model.IsUIdValid(_db);
+            if (!result.Item1 || !model.IsPasswordValid(result.Item2))
             {
-                return RedirectToAction("Index", "Dashboard");
+                return View(nameof(Index), model);
             }
-            return View(nameof(Index)); 
+            HttpContext.Session.SetString("admin", model.UId);
+            return Ok(HttpContext.Session.GetString("admin")); 
         }
-
     }
 }

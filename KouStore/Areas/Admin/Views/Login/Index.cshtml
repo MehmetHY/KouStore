@@ -14,6 +14,7 @@
     <main>
         <form method="post" asp-action="Verify">
             <h1>Admin Login</h1>
+            <h2>@Model.ErrorMessage</h2>
             <div>
                 <label asp-for=@Model.UId></label>
                 <input asp-for=@Model.UId />

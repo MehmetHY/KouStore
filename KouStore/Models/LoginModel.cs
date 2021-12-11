@@ -15,30 +15,29 @@ namespace KouStore.Models
         public string Password { get; set; } = string.Empty;
         public string ErrorMessage { get; private set; } = string.Empty;
 
-        public bool IsUIdValid(AppDbContext db)
+        public (bool, AdminModel?) IsUIdValid(AppDbContext db)
         {
-            if (UId != string.Empty)
+            if (UId == string.Empty)
             {
                 ErrorMessage = "Admin Name cannot be empty!";
-                return false;
+                return (false, null);
             }
-            Admin? admin = db.Admins.Where(a => a.UId == UId).FirstOrDefault();
+            AdminModel? admin = db.Admins.Where(a => a.UId == UId).FirstOrDefault();
             if (admin == null || admin.UId != UId)
             {
                 ErrorMessage = $"Admin \"{UId}\" doesn't exist!";
-                return false;
+                return (false, null);
             }
-            return true;
+            return (true, admin);
         }
-        public bool IsPasswordValid(AppDbContext db)
+        public bool IsPasswordValid(AdminModel admin)
         {
-            if (Password != string.Empty)
+            if (Password == string.Empty)
             {
                 ErrorMessage = "Admin Name cannot be empty!";
                 return false;
             }
-            Admin? admin = db.Admins.Where(a => a.Password == Password).FirstOrDefault();
-            if (admin == null || admin.Password != Password)
+            if (admin.Password != Password)
             {
                 ErrorMessage = "Wrong password";
                 return false;
