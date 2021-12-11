@@ -7,45 +7,38 @@ namespace KouStore.Managers
 {
     public class AdminLoginValidation
     {
-        private readonly AdminModel _adminModel;
-        private readonly AppDbContext _db;
         public string NameErrorMessage { get; set; } = string.Empty;
-        private bool _nameValid = true;
+        public bool NameValid = true;
         public string PasswordErrorMessage { get; set; } = string.Empty;
-        private bool _passwordValid = true;
-        public AdminLoginValidation(AppDbContext db, AdminModel model)
-        {
-            _db = db;
-            _adminModel = model;
-        }
-        public bool ValidateLogin()
+        public bool PasswordValid = true;
+        public bool ValidateLogin(AppDbContext db, AdminModel model)
         {
             bool isEmpty = false;
-            if (string.IsNullOrEmpty(_adminModel.UId))
+            if (string.IsNullOrEmpty(model.UId))
             {
-                _nameValid = false;
+                NameValid = false;
                 NameErrorMessage = ErrorStrings[EmptyAdminName].Translate();
                 isEmpty = true;
             }
-            if (string.IsNullOrEmpty(_adminModel.Password))
+            if (string.IsNullOrEmpty(model.Password))
             {
-                _passwordValid = false;
+                PasswordValid = false;
                 PasswordErrorMessage = ErrorStrings[EmptyPassword].Translate();
                 isEmpty = true;
             }
             if (isEmpty) return false;
-            AdminModel? queryModel = _db.Admins.FirstOrDefault(a => a.UId == _adminModel.UId);
+            AdminModel? queryModel = db.Admins.FirstOrDefault(a => a.UId == model.UId);
             if (queryModel == null)
             {
-                _nameValid = false;
+                NameValid = false;
                 NameErrorMessage = ErrorStrings[WrongAdminName].Translate();
             }
-            else if (queryModel.Password != _adminModel.Password)
+            else if (queryModel.Password != model.Password)
             {
-                _passwordValid = false;
+                PasswordValid = false;
                 PasswordErrorMessage = ErrorStrings[WrongPassword].Translate();
             }
-            return _nameValid && _passwordValid;
+            return NameValid && PasswordValid;
         }
     }
 }
