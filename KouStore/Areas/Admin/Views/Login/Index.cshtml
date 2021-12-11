@@ -1,4 +1,4 @@
-﻿@model KouStore.Models.LoginModel
+﻿@model KouStore.Models.AdminModel;
 @{
     ViewData["Title"] = "Admin Login";
 }
@@ -14,14 +14,20 @@
     <main>
         <form method="post" asp-action="Verify">
             <h1>Admin Login</h1>
-            <h2>@Model.ErrorMessage</h2>
+            <div asp-validation-summary="All"></div>
+            @if (ViewData["Error"] != null)
+            {
+                <span>@ViewData["Error"]</span>
+            }
             <div>
-                <label asp-for=@Model.UId></label>
-                <input asp-for=@Model.UId />
+                <label asp-for="UId"></label>
+                <input asp-for="UId"/>
+                <span asp-validation-for="UId"></span>
             </div>
             <div>
-                <label asp-for=@Model.Password></label>
-                <input asp-for=@Model.Password />
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
             </div>
             <input type="submit" value="Login" />
         </form>

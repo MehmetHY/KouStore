@@ -6,6 +6,7 @@ namespace KouStore.Config
     {
         public enum ErrorMessage
         {
+            GeneralLoginError,
             EmptyAdminName,
             EmptyUserName,
             EmptyPassword,
@@ -15,12 +16,13 @@ namespace KouStore.Config
         }
         public static Dictionary<ErrorMessage, StringModel> ErrorStrings { get; private set; } = new Dictionary<ErrorMessage, StringModel>()
         {
+            { ErrorMessage.GeneralLoginError, new StringModel{EnglishString = "Name or password not correct!", TurkishString = "İsmi ya da parola yanlış!"} },
             { ErrorMessage.EmptyAdminName, new StringModel{EnglishString = "Admin name cannot be empty!", TurkishString = "Admin ismi boş bırakılamaz!"} },
             { ErrorMessage.EmptyUserName, new StringModel{EnglishString = "User name cannot be empty!", TurkishString = "Kullanıcı ismi boş bırakılamaz!"} },
             { ErrorMessage.EmptyPassword, new StringModel{EnglishString = "Password cannot be empty!", TurkishString = "Parola boş bırakılamaz!"} },
             { ErrorMessage.WrongAdminName, new StringModel{EnglishString = "Wrong admin name!", TurkishString = "Geçersiz admin ismi!"} },
             { ErrorMessage.WrongUserName, new StringModel{EnglishString = "Wrong user name!", TurkishString = "Geçersiz kullanıcı ismi!"} },
-            { ErrorMessage.WrongUserName, new StringModel{EnglishString = "Wrong user password!", TurkishString = "Geçersiz parola!"} }
+            { ErrorMessage.WrongPassword, new StringModel{EnglishString = "Wrong user password!", TurkishString = "Geçersiz parola!"} }
 
         };
     }

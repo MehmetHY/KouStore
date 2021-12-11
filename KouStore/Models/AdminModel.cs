@@ -7,8 +7,12 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string UId { get; set; } = string.Empty;
+        [StringLength(100)]
+        [DataType(DataType.Text)]
+        public string? UId { get; set; } = string.Empty;
         [Required]
-        public string Password { get; set; } = string.Empty;
+        [DataType(DataType.Password)]
+        [StringLength(50)]
+        public string? Password { get; set; } = string.Empty;
     }
 }

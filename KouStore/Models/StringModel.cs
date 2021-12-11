@@ -10,7 +10,7 @@ namespace KouStore.Models
         public string EnglishString { get; set; } = string.Empty;
         public string TurkishString { get; set; } = string.Empty;
 
-        public string GetString()
+        public string Translate()
         {
             switch (Settings.CurrentLanguage)
             {

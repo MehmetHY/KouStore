@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KouStore.Models;
 using KouStore.Data;
+using KouStore.Managers;
 
 namespace KouStore.Areas.Admin.Controllers
 {
@@ -16,24 +17,18 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(new LoginModel());
+            return View(new AdminModel());
         }
         [HttpPost]
-        public IActionResult Index(LoginModel model)
+        public IActionResult Index(string error)
         {
-            return View(model);
+            ViewData["Error"] = error;
+            return View(new AdminModel());
         }
-
         [HttpPost]
-        public IActionResult Verify(LoginModel model)
+        public IActionResult Verify(AdminModel? model)
         {
-            (bool, Models.AdminModel?) result = model.IsUIdValid(_db);
-            if (!result.Item1 || !model.IsPasswordValid(result.Item2))
-            {
-                return View(nameof(Index), model);
-            }
-            HttpContext.Session.SetString("admin", model.UId);
-            return Ok(HttpContext.Session.GetString("admin")); 
+            return Ok();
         }
     }
 }
