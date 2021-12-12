@@ -18,6 +18,11 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            if (AdminLoginManager.IsLoggedIn(HttpContext.Session))
+            {
+                int id = AdminLoginManager.GetAdminId(HttpContext.Session);
+                return RedirectToAction("Index", "Dashboard", new { id });
+            }
             return View(new AdminLoginViewModel() { Admin = new AdminModel(), AdminLogin = new Managers.AdminLoginValidation() });
         }
         [HttpPost]
