@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KouStore.Models
 {
@@ -16,6 +17,7 @@ namespace KouStore.Models
         public string Description { get; set; }
         [Required]
         [DataType(DataType.Currency)]
+        [Column(TypeName ="decimal(10, 2)")]
         [Range(0, 99999)]
         public decimal Price { get; set; }
         [Required]

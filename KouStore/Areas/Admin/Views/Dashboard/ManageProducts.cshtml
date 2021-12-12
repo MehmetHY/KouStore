@@ -1,0 +1,6 @@
+﻿@model List<KouStore.Models.ProductModel>
+
+@foreach (var product in @Model)
+{
+    <p>name: @product.Name, prize: @product.Price</p>
+}

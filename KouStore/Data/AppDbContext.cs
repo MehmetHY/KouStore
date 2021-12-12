@@ -14,5 +14,14 @@ namespace KouStore.Data
         {
             return Admins.FirstOrDefault(a => a.UId == name);
         }
+
+        public DbSet<ProductModel> Products { get; set; }
+        public List<ProductModel> GetAllProducts()
+        {
+            return Products.ToList();
+        }
+        public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<SubCategoryModel> SubCategories { get; set; }
+
     }
 }

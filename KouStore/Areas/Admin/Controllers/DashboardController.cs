@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KouStore.Managers;
+using KouStore.Models;
+using KouStore.Data;
 
 namespace KouStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class DashboardController : Controller
     {
-        [Route("[area]/[controller]/{id}")]
+        private readonly AppDbContext _db;
+        public DashboardController(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        [Route("[area]/[controller]/[action]/{id}")]
         [HttpGet]
         public IActionResult Index([FromRoute] int id)
         {
@@ -23,6 +31,17 @@ namespace KouStore.Areas.Admin.Controllers
         {
             AdminLoginManager.Logout(HttpContext.Session);
             return RedirectToAction("Index", "Login");
+        }
+        [Route("[area]/[controller]/[action]")]
+        [HttpGet]
+        public IActionResult ManageProducts()
+        {
+            if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            List<ProductModel> products = _db.GetAllProducts();
+            return View(products);
         }
     }
 }
