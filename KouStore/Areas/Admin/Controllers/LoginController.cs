@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KouStore.Models;
 using KouStore.Data;
+using KouStore.Managers;
 using KouStore.Models.ViewModels;
 
 namespace KouStore.Areas.Admin.Controllers
 {
-    [Area("admin")]
+    [Area("Admin")]
     public class LoginController : Controller
     {
         private readonly AppDbContext _db;
@@ -32,7 +33,9 @@ namespace KouStore.Areas.Admin.Controllers
             {
                 return View(nameof(Index), model);
             }
-            return Ok("OK");
+            int id = _db.GetAdminByName(model.Admin.UId).Id;
+            SessionManager.AddSession(HttpContext.Session, SessionManager.AdminId, id.ToString());
+            return RedirectToAction("Index", "Dashboard", new {id});
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using KouStore.Data;
 using KouStore.Models;
+using KouStore.Managers;
 using static KouStore.Config.Strings;
 using static KouStore.Config.Strings.ErrorMessage;
 
@@ -27,7 +28,7 @@ namespace KouStore.Managers
                 isEmpty = true;
             }
             if (isEmpty) return false;
-            AdminModel? queryModel = db.Admins.FirstOrDefault(a => a.UId == model.UId);
+            AdminModel? queryModel = db.GetAdminByName(model.UId);
             if (queryModel == null)
             {
                 NameValid = false;
@@ -38,7 +39,8 @@ namespace KouStore.Managers
                 PasswordValid = false;
                 PasswordErrorMessage = ErrorStrings[WrongPassword].Translate();
             }
-            return NameValid && PasswordValid;
+            bool result = NameValid && PasswordValid;
+            return result;
         }
     }
 }

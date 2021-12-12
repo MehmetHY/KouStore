@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace KouStore.Models
 {
@@ -7,8 +8,9 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         [DataType(DataType.Text)]
+        [DisplayName("Admin Name")]
         public string? UId { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Password)]

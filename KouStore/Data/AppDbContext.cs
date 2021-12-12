@@ -10,5 +10,9 @@ namespace KouStore.Data
         }
 
         public DbSet<AdminModel> Admins { get; set; }
+        public AdminModel? GetAdminByName(string name)
+        {
+            return Admins.FirstOrDefault(a => a.UId == name);
+        }
     }
 }
