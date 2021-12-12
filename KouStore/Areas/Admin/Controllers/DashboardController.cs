@@ -32,16 +32,5 @@ namespace KouStore.Areas.Admin.Controllers
             AdminLoginManager.Logout(HttpContext.Session);
             return RedirectToAction("Index", "Login");
         }
-        [Route("[area]/[controller]/[action]")]
-        [HttpGet]
-        public IActionResult ManageProducts()
-        {
-            if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            List<ProductModel> products = _db.GetAllProducts();
-            return View(products);
-        }
     }
 }
