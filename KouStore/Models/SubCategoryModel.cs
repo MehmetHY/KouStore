@@ -7,9 +7,7 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
+        public StringModel Name { get; set; }
         [Required]
         public CategoryModel Category { get; set; }
     }

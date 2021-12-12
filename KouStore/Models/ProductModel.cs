@@ -8,13 +8,9 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [DataType(DataType.Text)]
-        [StringLength(100)]
-        public string Name { get; set; }
+        public StringModel Name { get; set; }
         [Required]
-        [DataType(DataType.Text)]
-        [StringLength(200)]
-        public string Description { get; set; }
+        public StringModel Description { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName ="decimal(10, 2)")]

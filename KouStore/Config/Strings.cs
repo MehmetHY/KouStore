@@ -12,7 +12,13 @@ namespace KouStore.Config
             EmptyPassword,
             WrongAdminName,
             WrongUserName,
-            WrongPassword
+            WrongPassword,
+
+            EmptyProductName,
+            EmptyProductDescription,
+            InvalidProductPrice,
+            InvalidProductCategory,
+            InvalidProductStockQuantity
         }
         public static Dictionary<ErrorMessage, StringModel> ErrorStrings { get; private set; } = new Dictionary<ErrorMessage, StringModel>()
         {
@@ -22,7 +28,13 @@ namespace KouStore.Config
             { ErrorMessage.EmptyPassword, new StringModel{EnglishString = "Password cannot be empty!", TurkishString = "Parola boş bırakılamaz!"} },
             { ErrorMessage.WrongAdminName, new StringModel{EnglishString = "Wrong admin name!", TurkishString = "Geçersiz admin ismi!"} },
             { ErrorMessage.WrongUserName, new StringModel{EnglishString = "Wrong user name!", TurkishString = "Geçersiz kullanıcı ismi!"} },
-            { ErrorMessage.WrongPassword, new StringModel{EnglishString = "Wrong user password!", TurkishString = "Geçersiz parola!"} }
+            { ErrorMessage.WrongPassword, new StringModel{EnglishString = "Wrong user password!", TurkishString = "Geçersiz parola!"} },
+            
+            { ErrorMessage.EmptyProductName, new StringModel{EnglishString = "Product name cannot be empty!", TurkishString = "Ürün ismi boş bırakılamaz!"} },
+            { ErrorMessage.EmptyProductDescription, new StringModel{EnglishString = "Product description cannot be empty!", TurkishString = "Ürün açıklaması boş bırakılamaz!"} },
+            { ErrorMessage.InvalidProductPrice, new StringModel{EnglishString = "Invalid product price!", TurkishString = "Geçersiz ürün fiyatı!"} },
+            { ErrorMessage.InvalidProductCategory, new StringModel{EnglishString = "Invalid product category!", TurkishString = "Geçersiz ürün kategorisi!"} },
+            { ErrorMessage.InvalidProductStockQuantity, new StringModel{EnglishString = "Invalid product stock quantity!", TurkishString = "Geçersiz mevcut stok!"} },
 
         };
     }

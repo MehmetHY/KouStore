@@ -20,6 +20,10 @@ namespace KouStore.Data
         {
             return Products.ToList();
         }
+        public ProductModel? GetProductById(int id)
+        {
+            return Products.FirstOrDefault(p => p.Id == id);
+        }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<SubCategoryModel> SubCategories { get; set; }
 

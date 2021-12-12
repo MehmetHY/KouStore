@@ -7,7 +7,11 @@ namespace KouStore.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
         public string EnglishString { get; set; } = string.Empty;
+        [Required]
+        [DataType(DataType.Text)]
         public string TurkishString { get; set; } = string.Empty;
 
         public string Translate()

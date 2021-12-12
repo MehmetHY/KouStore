@@ -1,5 +1,6 @@
 ﻿using KouStore.Data;
 using KouStore.Managers;
+using KouStore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Areas.Admin.Controllers
@@ -21,6 +22,26 @@ namespace KouStore.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Login");
             }
             return View(_db.GetAllProducts());
+        }
+        [Route("[area]/[controller]/[action]")]
+        [HttpGet]
+        public IActionResult Create()
+        {
+            if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View();
+        }
+        [Route("[area]/[controller]/[action]")]
+        [HttpPost]
+        public IActionResult Create(ProductModel? product)
+        {
+            if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return RedirectToAction("Index");
         }
     }
 }
