@@ -17,5 +17,12 @@ namespace KouStore.Areas.Admin.Controllers
             }
             return View();
         }
+        [Route("[area]/[controller]/[action]")]
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            SessionManager.RemoveSession(HttpContext.Session, SessionManager.AdminId);
+            return RedirectToAction("Index", "Login");
+        }
     }
 }
