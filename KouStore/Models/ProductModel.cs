@@ -19,6 +19,8 @@ namespace KouStore.Models
         [Range(0, 99999)]
         public decimal Price { get; set; }
         [Required]
+        public SubCategoryModel Category { get; set; }
+        [Required]
         [Range(0,99999)]
         public uint StockQuantity { get; set; }
     }
