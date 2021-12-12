@@ -26,6 +26,5 @@ namespace KouStore.Data
         }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<SubCategoryModel> SubCategories { get; set; }
-
     }
 }

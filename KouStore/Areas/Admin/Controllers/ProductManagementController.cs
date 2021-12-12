@@ -15,14 +15,14 @@ namespace KouStore.Areas.Admin.Controllers
         }
         [Route("[area]/[controller]/[action]")]
         [HttpGet]
-        public IActionResult Index()
-        {
-            if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            return View(_db.GetAllProducts());
-        }
+        //public IActionResult Index()
+        //{
+        //    if (!AdminLoginManager.IsLoggedIn(HttpContext.Session))
+        //    {
+        //        return RedirectToAction("Index", "Login");
+        //    }
+        //    return View(_db.GetAllProducts());
+        //}
         [Route("[area]/[controller]/[action]")]
         [HttpGet]
         public IActionResult Create()

@@ -18,14 +18,14 @@ namespace KouStore.Managers
 
         private bool ValidateProduct(ProductModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.Name))
-            {
-                NameValid = false;
-            }
-            if (string.IsNullOrWhiteSpace(model.Description))
-            {
-                DescriptionValid = false;
-            }
+            //if (string.IsNullOrWhiteSpace(model.Name))
+            //{
+            //    NameValid = false;
+            //}
+            //if (string.IsNullOrWhiteSpace(model.Description))
+            //{
+            //    DescriptionValid = false;
+            //}
             if (model.Price < 0 || model.Price > 99999)
             {
                 PriceValid = false;

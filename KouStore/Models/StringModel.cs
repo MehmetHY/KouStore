@@ -9,10 +9,10 @@ namespace KouStore.Models
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Text)]
-        public string EnglishString { get; set; } = string.Empty;
+        public string EnglishString { get; set; }
         [Required]
         [DataType(DataType.Text)]
-        public string TurkishString { get; set; } = string.Empty;
+        public string TurkishString { get; set; }
 
         public string Translate()
         {

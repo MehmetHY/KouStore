@@ -8,9 +8,21 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public StringModel Name { get; set; }
+        [DataType(DataType.Text)]
+        [StringLength(50)]
+        public string NameEnglish { get; set; }
         [Required]
-        public StringModel Description { get; set; }
+        [DataType(DataType.Text)]
+        [StringLength(50)]
+        public string NameTurkish { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [StringLength(50)]
+        public string DescriptionEnglish { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [StringLength(50)]
+        public string DescriptionTurkish { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         [Column(TypeName ="decimal(10, 2)")]
