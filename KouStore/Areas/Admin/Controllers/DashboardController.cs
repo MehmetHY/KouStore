@@ -10,7 +10,7 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index([FromRoute] int id)
         {
-            bool isAuthorized = AdminLoginChecker.IsAuthorized(HttpContext.Session, id);
+            bool isAuthorized = AdminLoginManager.IsAuthorized(HttpContext.Session, id);
             if (!isAuthorized)
             {
                 return RedirectToAction("Index", "Login");
@@ -21,7 +21,7 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-            SessionManager.RemoveSession(HttpContext.Session, SessionManager.AdminId);
+            AdminLoginManager.Logout(HttpContext.Session);
             return RedirectToAction("Index", "Login");
         }
     }
