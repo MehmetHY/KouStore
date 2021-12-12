@@ -20,6 +20,16 @@ namespace KouStore.Config
             InvalidProductCategory,
             InvalidProductStockQuantity
         }
+        public enum Label
+        {
+            Title,
+            English,
+            Turkish,
+            Description,
+            Price,
+            Category,
+            StockQuantity
+        }
         public static Dictionary<ErrorMessage, StringModel> ErrorStrings { get; private set; } = new Dictionary<ErrorMessage, StringModel>()
         {
             { ErrorMessage.GeneralLoginError, new StringModel{EnglishString = "Name or password not correct!", TurkishString = "İsmi ya da parola yanlış!"} },
@@ -36,6 +46,17 @@ namespace KouStore.Config
             { ErrorMessage.InvalidProductCategory, new StringModel{EnglishString = "Invalid product category!", TurkishString = "Geçersiz ürün kategorisi!"} },
             { ErrorMessage.InvalidProductStockQuantity, new StringModel{EnglishString = "Invalid product stock quantity!", TurkishString = "Geçersiz mevcut stok!"} },
 
+        };
+
+        public static Dictionary<Label, StringModel> LabelStrings { get; private set; } = new Dictionary<Label, StringModel>()
+        {
+            {Label.Title, new StringModel {EnglishString = "Title", TurkishString="Başlık"} },
+            {Label.English, new StringModel {EnglishString = "English", TurkishString="İngilizce"} },
+            {Label.Turkish, new StringModel {EnglishString = "Turkish", TurkishString="Türkçe"} },
+            {Label.Description, new StringModel {EnglishString = "Description", TurkishString="Açıklama"} },
+            {Label.Price, new StringModel {EnglishString = "Price", TurkishString="Fiyat"} },
+            {Label.Category, new StringModel {EnglishString = "Category", TurkishString="Kategori"} },
+            {Label.StockQuantity, new StringModel {EnglishString = "Stock Quantity", TurkishString="Stok Adedi"} }
         };
     }
 }

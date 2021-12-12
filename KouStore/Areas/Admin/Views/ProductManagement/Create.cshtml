@@ -1,4 +1,38 @@
-﻿@model KouStore.Models.ProductModel
+﻿@model KouStore.Models.ViewModels.ProductManageViewModel
 
 <form method="post" asp-action="Create">
+    <label asp-for="Product.NameEnglish"></label>
+    <input asp-for="Product.NameEnglish"/>
+    <br />
+    <label asp-for="Product.NameTurkish"></label>
+    <input asp-for="Product.NameTurkish"/>
+    <br />
+    <label asp-for="Product.DescriptionEnglish"></label>
+    <input asp-for="Product.DescriptionEnglish"/>
+    <br />
+    <label asp-for="Product.DescriptionTurkish"></label>
+    <input asp-for="Product.DescriptionTurkish"/>
+    <br />
+    <label asp-for="Product.Price"></label>
+    <input asp-for="Product.Price" type="number" min="0.00" max="99999.00" step="0.01"/>
+    <br />
+    <label asp-for="Product.Category"></label>
+    <select asp-for="SubCategoryId">
+        @foreach (var category in @Model.Categories)
+        {
+            <optgroup label="@category.GetNameStringModel().Translate()">
+                @foreach (var sub in @Model.SubCategories)
+                {
+                    if (sub.Category.Id == category.Id)
+                    {
+                        <option value="@sub.Id">@sub.GetNameStringModel().Translate()</option>
+                    }
+                }
+            </optgroup>
+        }
+    </select>
+    <br />
+    <input asp-for="Product.StockQuantity" min="0" max="99999"/>
+    <label asp-for="Product.StockQuantity"></label>
+    <input type="submit" value="Create" />
 </form>

@@ -14,5 +14,10 @@ namespace KouStore.Models
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string NameTurkish { get; set; }
+
+        public StringModel GetNameStringModel()
+        {
+            return new StringModel { EnglishString = NameEnglish, TurkishString = NameTurkish };
+        }
     }
 }

@@ -24,7 +24,17 @@ namespace KouStore.Data
         {
             return Products.FirstOrDefault(p => p.Id == id);
         }
+
         public DbSet<CategoryModel> Categories { get; set; }
+        public List<CategoryModel> GetAllCategories()
+        {
+            return Categories.ToList();
+        }
+        
         public DbSet<SubCategoryModel> SubCategories { get; set; }
+        public List<SubCategoryModel> GetAllSubCategories()
+        {
+            return SubCategories.ToList();
+        }
     }
 }

@@ -16,5 +16,9 @@ namespace KouStore.Models
         public string NameTurkish { get; set; }
         [Required]
         public CategoryModel Category { get; set; }
+        public StringModel GetNameStringModel()
+        {
+            return new StringModel { EnglishString = NameEnglish, TurkishString = NameTurkish };
+        }
     }
 }

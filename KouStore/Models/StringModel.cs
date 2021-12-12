@@ -5,8 +5,6 @@ namespace KouStore.Models
 {
     public class StringModel
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         [DataType(DataType.Text)]
         public string EnglishString { get; set; }
