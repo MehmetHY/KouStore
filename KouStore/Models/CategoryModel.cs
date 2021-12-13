@@ -2,12 +2,13 @@
 
 namespace KouStore.Models
 {
-    public class ImageModel
+    public class CategoryModel
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [DataType(DataType.Upload)]
-        public IFormFile? Data { get; set; }
+        [DataType(DataType.Text)]
+        [StringLength(50)]
+        public string? Name { get; set; } = null;
     }
 }
