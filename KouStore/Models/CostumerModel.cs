@@ -2,7 +2,7 @@
 
 namespace KouStore.Models
 {
-    public class AdminModel
+    public class CostumerModel
     {
         [Key]
         public int Id { get; set; }
