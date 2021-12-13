@@ -1,17 +1,18 @@
 ﻿using KouStore.Data;
+using KouStore.Managers;
 
 namespace KouStore.Models.ViewModels
 {
     public class ProductManageViewModel
     {
         private readonly AppDbContext _db;
-        public ProductModel Product { get; set; }
-        public List<CategoryModel> Categories { get; set; }
-        public List<SubCategoryModel> SubCategories { get; set; }
-        public ProductManageViewModel ProductValidate { get; set; }
+        public ProductModel Product { get; set; } = new ProductModel();
+        public List<CategoryModel> Categories { get; set; } = new List<CategoryModel>();
+        public List<SubCategoryModel> SubCategories { get; set; } = new List<SubCategoryModel>();
+        public ProductValidation ProductValidate { get; set; } = new ProductValidation();
         public int SubCategoryId { get; set; }
-        public FormFile PreviewImage { get; set; }
-        public List<FormFile> Images { get; set; }
+        public FormFile? PreviewImage { get; set; } = null;
+        public List<FormFile> Images { get; set; } = new List<FormFile>();
         public ProductManageViewModel(AppDbContext db)
         {
             _db = db;
@@ -34,9 +35,10 @@ namespace KouStore.Models.ViewModels
                 Product.Images.Add(new ImageModel() { Title = $"{title}_{i}", Data = data });
             }
         }
-        private byte[] ImageFileToArray(FormFile file)
+        private static byte[] ImageFileToArray(FormFile? file)
         {
-            MemoryStream stream = new MemoryStream();
+            if (file == null) return Array.Empty<byte>();
+            MemoryStream stream = new();
             file.CopyTo(stream);
             var arr = stream.ToArray();
             stream.Close();

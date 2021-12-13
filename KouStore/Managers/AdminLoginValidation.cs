@@ -28,13 +28,13 @@ namespace KouStore.Managers
                 isEmpty = true;
             }
             if (isEmpty) return false;
-            AdminModel? queryModel = db.GetAdminByName(model.UId);
+            AdminModel? queryModel = db.GetAdminByName(model?.UId ?? string.Empty);
             if (queryModel == null)
             {
                 NameValid = false;
                 NameErrorMessage = ErrorStrings[WrongAdminName].Translate();
             }
-            else if (queryModel.Password != model.Password)
+            else if (queryModel.Password != model?.Password)
             {
                 PasswordValid = false;
                 PasswordErrorMessage = ErrorStrings[WrongPassword].Translate();

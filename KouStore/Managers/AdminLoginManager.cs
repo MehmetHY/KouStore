@@ -24,7 +24,7 @@ namespace KouStore.Managers
         }
         public static int GetAdminId(ISession session)
         {
-            return int.Parse(SessionManager.GetSession(session, AdminId));
+            return int.Parse(SessionManager.GetSession(session, AdminId) ?? "-1");
         }
     }
 }

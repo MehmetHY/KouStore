@@ -16,7 +16,7 @@ namespace KouStore.Data
         }
 
         public DbSet<ProductModel> Products { get; set; }
-        public List<ProductModel> GetAllProducts()
+        public List<ProductModel>? GetAllProducts()
         {
             return Products.ToList();
         }

@@ -1,4 +1,5 @@
 ﻿@model KouStore.Models.ViewModels.ProductManageViewModel
+@using KouStore.Models
 @using static KouStore.Config.Strings
 
 <form method="post" asp-action="Create">
@@ -24,10 +25,10 @@
     <br />
     <label>@LabelStrings[Label.Category].Translate()</label>
     <select asp-for="SubCategoryId">
-        @foreach (var category in @Model.Categories)
+        @foreach (var category in @Model?.Categories ?? new List<CategoryModel>())
         {
             <optgroup label="@category.GetNameStringModel().Translate()">
-                @foreach (var sub in @Model.SubCategories)
+                @foreach (var sub in @Model?.SubCategories ?? new List<SubCategoryModel>())
                 {
                     if (sub.Category.Id == category.Id)
                     {

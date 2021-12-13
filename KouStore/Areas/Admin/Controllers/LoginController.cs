@@ -38,7 +38,7 @@ namespace KouStore.Areas.Admin.Controllers
             {
                 return View(nameof(Index), model);
             }
-            int id = _db.GetAdminByName(model.Admin.UId).Id;
+            int id = _db.GetAdminByName(model.Admin?.UId ?? string.Empty)?.Id ?? 0;
             AdminLoginManager.Login(HttpContext.Session, id);
             return RedirectToAction("Index", "Dashboard", new {id});
         }

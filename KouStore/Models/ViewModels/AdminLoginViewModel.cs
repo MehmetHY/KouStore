@@ -4,7 +4,7 @@ namespace KouStore.Models.ViewModels
 {
     public class AdminLoginViewModel
     {
-        public AdminModel Admin { get; set; }
-        public AdminLoginValidation AdminLogin { get; set; }
+        public AdminModel Admin { get; set; } = new AdminModel();
+        public AdminLoginValidation AdminLogin { get; set; } = new AdminLoginValidation();
     }
 }

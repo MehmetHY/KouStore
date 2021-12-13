@@ -17,7 +17,7 @@
             <div>
                 <label asp-for="Admin.UId"></label>
                 <input asp-for="Admin.UId"/>
-                @if (!Model.AdminLogin.NameValid)
+                @if (!(Model?.AdminLogin.NameValid ?? true))
                 {
                     <p>@Model.AdminLogin.NameErrorMessage</p>
                 }
@@ -25,7 +25,7 @@
             <div>
                 <label asp-for="Admin.Password"></label>
                 <input asp-for="Admin.Password" />
-                @if (!Model.AdminLogin.PasswordValid)
+                @if (!(Model?.AdminLogin.PasswordValid ?? true))
                 {
                     <p>@Model.AdminLogin.PasswordErrorMessage</p>
                 }
