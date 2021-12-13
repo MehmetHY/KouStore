@@ -36,5 +36,9 @@ namespace KouStore.Data
         {
             return SubCategories.ToList();
         }
+        public SubCategoryModel GetSubCategoryById(int id)
+        {
+            return SubCategories.First(s => s.Id == id);
+        }
     }
 }

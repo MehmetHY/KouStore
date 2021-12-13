@@ -3,19 +3,24 @@
 
 <form method="post" asp-action="Create">
     <label>@LabelStrings[Label.Title].Translate() (@LabelStrings[Label.English].Translate())</label>
-    <input asp-for="Product.NameEnglish"/>
+    <input asp-for="Product.NameEnglish" required />
+
     <br />
     <label>@LabelStrings[Label.Title].Translate() (@LabelStrings[Label.Turkish].Translate())</label>
-    <input asp-for="Product.NameTurkish"/>
+    <input asp-for="Product.NameTurkish" required />
+
     <br />
     <label>@LabelStrings[Label.Description].Translate() (@LabelStrings[Label.English].Translate())</label>
-    <input asp-for="Product.DescriptionEnglish"/>
+    <input asp-for="Product.DescriptionEnglish" required />
+
     <br />
     <label>@LabelStrings[Label.Description].Translate() (@LabelStrings[Label.Turkish].Translate())</label>
-    <input asp-for="Product.DescriptionTurkish"/>
+    <input asp-for="Product.DescriptionTurkish" required />
+
     <br />
     <label>@LabelStrings[Label.Price].Translate()</label>
-    <input asp-for="Product.Price" type="number" min="0.00" max="99999.00" step="0.01"/>
+    <input asp-for="Product.Price" type="number" min="0.00" max="99999.00" step="0.01" required />
+
     <br />
     <label>@LabelStrings[Label.Category].Translate()</label>
     <select asp-for="SubCategoryId">
@@ -32,8 +37,19 @@
             </optgroup>
         }
     </select>
+    
     <br />
     <label>@LabelStrings[Label.StockQuantity].Translate()</label>
-    <input asp-for="Product.StockQuantity"/>
+    <input asp-for="Product.StockQuantity" required />
+    
+    <br />
+    <label>@LabelStrings[Label.PreviewImage].Translate()</label>
+    <input asp-for="PreviewImage" accept="image/jpeg" required />
+    <br />
+    <label>@LabelStrings[Label.Images].Translate()</label>
+    <input  asp-for="Images" accept="image/jpeg" multiple/>
+    
+    <br />
     <input type="submit" value="Create" />
+    <a asp-action="Index">Back</a>
 </form>

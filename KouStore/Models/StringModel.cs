@@ -7,10 +7,10 @@ namespace KouStore.Models
     {
         [Required]
         [DataType(DataType.Text)]
-        public string EnglishString { get; set; }
+        public string EnglishString { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Text)]
-        public string TurkishString { get; set; }
+        public string TurkishString { get; set; } = string.Empty;
 
         public string Translate()
         {

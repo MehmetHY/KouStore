@@ -9,13 +9,13 @@ namespace KouStore.Models
         [Required]
         [DataType(DataType.Text)]
         [StringLength(50)]
-        public string NameEnglish { get; set; }
+        public string NameEnglish { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Text)]
         [StringLength(50)]
-        public string NameTurkish { get; set; }
+        public string NameTurkish { get; set; } = string.Empty;
         [Required]
-        public CategoryModel Category { get; set; }
+        public CategoryModel Category { get; set; } = new CategoryModel();
         public StringModel GetNameStringModel()
         {
             return new StringModel { EnglishString = NameEnglish, TurkishString = NameTurkish };

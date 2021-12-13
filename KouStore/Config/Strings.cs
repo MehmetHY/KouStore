@@ -28,7 +28,9 @@ namespace KouStore.Config
             Description,
             Price,
             Category,
-            StockQuantity
+            StockQuantity,
+            PreviewImage,
+            Images
         }
         public static Dictionary<ErrorMessage, StringModel> ErrorStrings { get; private set; } = new Dictionary<ErrorMessage, StringModel>()
         {
@@ -56,7 +58,9 @@ namespace KouStore.Config
             {Label.Description, new StringModel {EnglishString = "Description", TurkishString="Açıklama"} },
             {Label.Price, new StringModel {EnglishString = "Price", TurkishString="Fiyat"} },
             {Label.Category, new StringModel {EnglishString = "Category", TurkishString="Kategori"} },
-            {Label.StockQuantity, new StringModel {EnglishString = "Stock Quantity", TurkishString="Stok Adedi"} }
+            {Label.StockQuantity, new StringModel {EnglishString = "Stock Quantity", TurkishString="Stok Adedi"} },
+            {Label.PreviewImage, new StringModel {EnglishString = "Preview Image", TurkishString="Önizleme Görseli"} },
+            {Label.Images, new StringModel {EnglishString = "Images", TurkishString="Görseller"} }
         };
     }
 }
