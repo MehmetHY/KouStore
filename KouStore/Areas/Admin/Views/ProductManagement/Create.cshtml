@@ -1,22 +1,23 @@
 ﻿@model KouStore.Models.ViewModels.ProductManageViewModel
+@using static KouStore.Config.Strings
 
 <form method="post" asp-action="Create">
-    <label asp-for="Product.NameEnglish"></label>
+    <label>@LabelStrings[Label.Title].Translate() (@LabelStrings[Label.English].Translate())</label>
     <input asp-for="Product.NameEnglish"/>
     <br />
-    <label asp-for="Product.NameTurkish"></label>
+    <label>@LabelStrings[Label.Title].Translate() (@LabelStrings[Label.Turkish].Translate())</label>
     <input asp-for="Product.NameTurkish"/>
     <br />
-    <label asp-for="Product.DescriptionEnglish"></label>
+    <label>@LabelStrings[Label.Description].Translate() (@LabelStrings[Label.English].Translate())</label>
     <input asp-for="Product.DescriptionEnglish"/>
     <br />
-    <label asp-for="Product.DescriptionTurkish"></label>
+    <label>@LabelStrings[Label.Description].Translate() (@LabelStrings[Label.Turkish].Translate())</label>
     <input asp-for="Product.DescriptionTurkish"/>
     <br />
-    <label asp-for="Product.Price"></label>
+    <label>@LabelStrings[Label.Price].Translate()</label>
     <input asp-for="Product.Price" type="number" min="0.00" max="99999.00" step="0.01"/>
     <br />
-    <label asp-for="Product.Category"></label>
+    <label>@LabelStrings[Label.Category].Translate()</label>
     <select asp-for="SubCategoryId">
         @foreach (var category in @Model.Categories)
         {
@@ -32,7 +33,7 @@
         }
     </select>
     <br />
-    <input asp-for="Product.StockQuantity" min="0" max="99999"/>
-    <label asp-for="Product.StockQuantity"></label>
+    <label>@LabelStrings[Label.StockQuantity].Translate()</label>
+    <input asp-for="Product.StockQuantity"/>
     <input type="submit" value="Create" />
 </form>

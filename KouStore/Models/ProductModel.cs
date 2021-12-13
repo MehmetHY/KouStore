@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KouStore.Models
@@ -34,5 +33,8 @@ namespace KouStore.Models
         [Required]
         [Range(0,99999)]
         public uint StockQuantity { get; set; }
+        [Required]
+        public ImageModel PreviewImage { get; set; }
+        public List<ImageModel> Images { get; set; }
     }
 }
