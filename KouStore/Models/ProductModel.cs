@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static KouStore.Config.Settings;
 
 namespace KouStore.Models
 {
@@ -14,7 +15,7 @@ namespace KouStore.Models
         [DataType(DataType.Text)]
         public string Description { get; set; } = "";
         [Required]
-        public ImageModel? Image { get; set; }
+        public byte[]? Image { get; set; }
         [Required]
         public int Price { get; set; }
         [Required]
