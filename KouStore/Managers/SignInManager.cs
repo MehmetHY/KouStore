@@ -13,5 +13,10 @@ namespace KouStore.Managers
         {
             session.SetString(ADMIN_ID_KEY, admin.Id.ToString());
         }
+
+        public static void LogOutAdmin(ISession session)
+        {
+            session.Remove(ADMIN_ID_KEY);
+        }
     }
 }

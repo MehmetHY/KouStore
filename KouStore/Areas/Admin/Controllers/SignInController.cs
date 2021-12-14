@@ -36,5 +36,15 @@ namespace KouStore.Areas.Admin.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        [Route("[Area]/[Controller]/[Action]")]
+        public IActionResult Logout()
+        {
+            if (SignInManager.IsAdminSignedIn(HttpContext.Session))
+            {
+                SignInManager.LogOutAdmin(HttpContext.Session);
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
