@@ -3,9 +3,17 @@
 <form method="post" asp-action="Index">
     <label asp-for="Admin.Name"></label>
     <input asp-for="Admin.Name" />
+    @if (!@Model.NameValid)
+    {
+        <p>@Model.NameErrorMessage</p>
+    }
     <br />
     <label asp-for="Admin.Password"></label>
     <input asp-for="Admin.Password" />
+    @if (!@Model.PasswordValid)
+    {
+        <p>@Model.PasswordErrorMessage</p>
+    }
     <br />
     <input type="submit" />
 </form>

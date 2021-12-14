@@ -38,7 +38,7 @@ namespace KouStore.Areas.Admin.Models
             AdminModel? queryModel = db.GetAdminByName(Admin.Name);
             if (queryModel == null)
             {
-                NameErrorMessage = $"Admin name {Admin.Name} doesn't exists!";
+                NameErrorMessage = $"Admin name \"{Admin.Name}\" doesn't exists!";
                 NameValid = false;
                 return false;
             }
@@ -48,6 +48,7 @@ namespace KouStore.Areas.Admin.Models
                 PasswordValid = false;
                 return false;
             }
+            Admin.Id = queryModel.Id;
             return true;
         }
         private void ValidateForm(AppDbContext db)

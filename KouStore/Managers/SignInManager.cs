@@ -1,4 +1,6 @@
-﻿namespace KouStore.Managers
+﻿using KouStore.Models;
+
+namespace KouStore.Managers
 {
     public static class SignInManager
     {
@@ -6,6 +8,10 @@
         public static bool IsAdminSignedIn(ISession session)
         {
             return session.GetString(ADMIN_ID_KEY) != null;
+        }
+        public static void SignInAdmin(ISession session, AdminModel admin)
+        {
+            session.SetString(ADMIN_ID_KEY, admin.Id.ToString());
         }
     }
 }
