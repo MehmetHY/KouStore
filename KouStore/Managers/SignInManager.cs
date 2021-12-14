@@ -1,4 +1,5 @@
 ﻿using KouStore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Managers
 {
@@ -13,10 +14,17 @@ namespace KouStore.Managers
         {
             session.SetString(ADMIN_ID_KEY, admin.Id.ToString());
         }
-
         public static void LogOutAdmin(ISession session)
         {
             session.Remove(ADMIN_ID_KEY);
+        }
+        public static IActionResult GetAdminAuthenticatedAction(IActionResult action, Controller controller)
+        {
+            if (IsAdminSignedIn(controller.HttpContext.Session))
+            {
+                return action;
+            }
+            return controller.RedirectToAction("Index", "SignIn", new { Area = "Admin" });
         }
     }
 }

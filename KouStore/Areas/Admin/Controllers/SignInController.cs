@@ -20,8 +20,7 @@ namespace KouStore.Areas.Admin.Controllers
         {
             if (SignInManager.IsAdminSignedIn(HttpContext.Session))
             {
-                // Todo: Redirect to Dashboard
-                return Ok($"Dashboard Admin id: {HttpContext.Session.GetString(SignInManager.ADMIN_ID_KEY)}");
+                return RedirectToAction("Index", "Dashboard");
             }
             return View(new AdminFormModel());
         }
@@ -30,9 +29,8 @@ namespace KouStore.Areas.Admin.Controllers
         {
             if (model.IsFormValid(_db))
             {
-                // Todo: Redirect to Dashboard
                 SignInManager.SignInAdmin(HttpContext.Session, model.Admin);
-                return Ok($"Dashboard. Admin Name: {model.Admin.Name}, Id = {model.Admin.Id}");
+                return RedirectToAction("Index", "Dashboard");
             }
             return View(model);
         }
