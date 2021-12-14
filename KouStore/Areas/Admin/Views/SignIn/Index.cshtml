@@ -1,1 +1,11 @@
 ﻿@model KouStore.Areas.Admin.Models.AdminFormModel
+
+<form method="post" asp-action="Index">
+    <label asp-for="Admin.Name"></label>
+    <input asp-for="Admin.Name" />
+    <br />
+    <label asp-for="Admin.Password"></label>
+    <input asp-for="Admin.Password" />
+    <br />
+    <input type="submit" />
+</form>
