@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Models
 {
-    public class FormModel
+    public class FormModel<T> where T : IViewModel
     {
-        public IViewModel ViewModel { get; set; }
+        public T ViewModel { get; set; }
         public Controller CurrentController { get; set; }
         public string ViewName { get; set; } = string.Empty;
         public IActionResult TargetActionResult { get; set; }
-        public delegate void ViewModelAction(IViewModel model);
+        public delegate void ViewModelAction(T model);
         public ViewModelAction SuccessAction { get; set; }
         public void Setup(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db)
         {

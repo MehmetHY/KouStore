@@ -1,8 +1,12 @@
-﻿@model KouStore.Models.FormModel
+﻿@using KouStore.Areas.Admin.Models
+@model KouStore.Models.FormModel
+@{
+    var adminViewModel = Model.ViewModel as AdminViewModel;
+}
 <h1>Admin Sign in</h1>
 <form method="post" asp-action="Index">
-    <label asp-for="Admin.Name"></label>
-    <input asp-for="Admin.Name" />
+    <label asp-for=@adminViewModel.Admin.Name></label>
+    <input asp-for=@adminViewModel.Admin.Name />
     @if (!@Model.NameValid)
     {
         <p>@Model.NameErrorMessage</p>
