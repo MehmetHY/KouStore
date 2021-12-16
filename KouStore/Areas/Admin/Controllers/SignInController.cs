@@ -29,12 +29,7 @@ namespace KouStore.Areas.Admin.Controllers
         public IActionResult Index(FormModel model)
         {
             model.Setup(this, nameof(Index), RedirectToAction("Index", "Dashboard"), SignInManager.SignInAdmin, _db);
-            if (model.IsFormValid(_db))
-            {
-                SignInManager.SignInAdmin(HttpContext.Session, model.Admin);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            return View(model);
+            return model.ProcessForm();
         }
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
