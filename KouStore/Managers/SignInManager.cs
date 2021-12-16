@@ -19,7 +19,8 @@ namespace KouStore.Managers
         }
         public static void LogOutAdmin(ISession session)
         {
-            session.Remove(ADMIN_ID_KEY);
+            if (IsAdminSignedIn(session))
+                session.Remove(ADMIN_ID_KEY);
         }
         public static IActionResult ConvertActionToAdminAuthenticatedAction(IActionResult action, Controller controller)
         {

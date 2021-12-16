@@ -26,19 +26,21 @@ namespace KouStore.Areas.Admin.Controllers
             return View(new AdminViewModel());
         }
         [HttpPost]
-        public IActionResult Index(FormModel model)
+        public IActionResult Index(FormModel formModel)
         {
-            model.Setup(this, nameof(Index), RedirectToAction("Index", "Dashboard"), SignInManager.SignInAdmin, _db);
-            return model.ProcessForm();
+            formModel.Setup(
+                this,
+                nameof(Index),
+                RedirectToAction("Index", "Dashboard"),
+                SignInManager.SignInAdmin,
+                _db);
+            return formModel.ProcessForm();
         }
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
         public IActionResult Logout()
         {
-            if (SignInManager.IsAdminSignedIn(HttpContext.Session))
-            {
-                SignInManager.LogOutAdmin(HttpContext.Session);
-            }
+            SignInManager.LogOutAdmin(HttpContext.Session);
             return RedirectToAction(nameof(Index));
         }
     }
