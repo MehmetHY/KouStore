@@ -14,12 +14,10 @@ namespace KouStore.Areas.Admin.Controllers
 
         [Route("[Area]/[Controller]")]
         [HttpGet]
-        public IActionResult Index()
-        {
-            return SignInManager.IsAdminSignedIn(HttpContext.Session) ?
+        public IActionResult Index() =>
+            SignInManager.IsAdminSignedIn(HttpContext.Session) ?
                 RedirectToAction("Index", "Dashboard") :
                 View(new FormModel<AdminViewModel>());
-        }
 
         [HttpPost]
         public IActionResult Index(FormModel<AdminViewModel> formModel)
@@ -33,7 +31,7 @@ namespace KouStore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [Route("[Area]/[Controller]/[Action]")]
+        [Route("[Area]/[Action]")]
         public IActionResult Logout()
         {
             SignInManager.LogOutAdmin(HttpContext.Session);
