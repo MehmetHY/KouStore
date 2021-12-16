@@ -8,11 +8,21 @@ namespace KouStore.Managers
     {
         public static void CreateFromViewModel(CategoryViewModel model)
         {
-            model.Category.AddToDb(model.DbContext);
+            model.Category.AddRecord(model.DbContext);
         }
-        public static void AddToDb(this CategoryModel model, AppDbContext? db)
+        public static void AddRecord(this CategoryModel model, AppDbContext? db)
         {
             db?.Categories.Add(model);
+            db?.SaveChanges();
+        }
+        public static void UpdateFromViewModel(CategoryViewModel model)
+        {
+            model.Category.UpdateRecord(model.DbContext);
+        }
+        public static void UpdateRecord(this CategoryModel model, AppDbContext? db)
+        {
+            db?.Categories.Update(model);
+            db?.SaveChanges();
         }
     }
 }
