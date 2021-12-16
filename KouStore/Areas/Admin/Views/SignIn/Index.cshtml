@@ -1,22 +1,20 @@
 ﻿@using KouStore.Areas.Admin.Models
-@model KouStore.Models.FormModel
-@{
-    var adminViewModel = Model.ViewModel as AdminViewModel;
-}
+@model KouStore.Models.FormModel<AdminViewModel>
+
 <h1>Admin Sign in</h1>
 <form method="post" asp-action="Index">
-    <label asp-for=@adminViewModel.Admin.Name></label>
-    <input asp-for=@adminViewModel.Admin.Name />
-    @if (!@Model.NameValid)
+    <label asp-for="ViewModel.Admin.Name"></label>
+    <input asp-for=ViewModel.Admin.Name />
+    @if (!@Model.ViewModel.NameValid)
     {
-        <p>@Model.NameErrorMessage</p>
+        <p>@Model.ViewModel.NameErrorMessage</p>
     }
     <br />
-    <label asp-for="Admin.Password"></label>
-    <input asp-for="Admin.Password" />
-    @if (!@Model.PasswordValid)
+    <label asp-for="ViewModel.Admin.Password"></label>
+    <input asp-for="ViewModel.Admin.Password" />
+    @if (!@Model.ViewModel.PasswordValid)
     {
-        <p>@Model.PasswordErrorMessage</p>
+        <p>@Model.ViewModel.PasswordErrorMessage</p>
     }
     <br />
     <input type="submit" />
