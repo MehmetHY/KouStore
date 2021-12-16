@@ -1,0 +1,12 @@
+﻿@model List<KouStore.Models.CategoryModel>
+
+<a asp-action="Create">Create New Category</a>
+<br />
+@foreach (var category in @Model)
+{
+    <p>@category.Name</p>
+    <a asp-action="Update" asp-route-id="@category.Id">Update</a>
+    <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+    <br />
+}
+<a asp-controller="Dashboard" asp-action="Index">Back</a>
