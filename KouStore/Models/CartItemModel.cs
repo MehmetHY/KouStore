@@ -2,7 +2,7 @@
 
 namespace KouStore.Models
 {
-    public class CartItem
+    public class CartItemModel
     {
         [Key]
         public int Id { get; set; }
