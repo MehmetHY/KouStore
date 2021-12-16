@@ -15,12 +15,11 @@ namespace KouStore.Data
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CustomerModel> Customers { get; set; }
 
-        public AdminModel? GetAdminByName(string? name)
-        {
-            if (name == null) return null;
-            return Admins.Where(a => a.Name == name).FirstOrDefault();
-        }
-
+        public AdminModel? GetAdminByName(string? name) =>
+            name == null ? null : Admins.Where(a => a.Name == name).FirstOrDefault();
         public List<ProductModel> AllProducts => Products.ToList();
+        public CategoryModel? GetCategoryByName(string? name) =>
+            name == null ? null : Categories.Where(c => c.Name == name).FirstOrDefault();
+
     }
 }

@@ -24,7 +24,7 @@ namespace KouStore.Areas.Admin.Models
         {
             TrimWhiteSpace();
             if (IsThereAnyEmptyForm()) return;
-            if (!AreNameAndPasswordCorrect()) return;
+            CheckNameAndPasswordCorrect();
         }
         private void TrimWhiteSpace()
         {
@@ -48,23 +48,21 @@ namespace KouStore.Areas.Admin.Models
             }
             return result;
         }
-        private bool AreNameAndPasswordCorrect()
+        private void CheckNameAndPasswordCorrect()
         {
             AdminModel? queryModel = DbContext.GetAdminByName(Admin.Name);
             if (queryModel == null)
             {
                 NameErrorMessage = $"Admin name \"{Admin.Name}\" doesn't exists!";
                 NameValid = false;
-                return false;
+                return;
             }
             if (queryModel.Password != Admin.Password)
             {
                 PasswordErrorMessage = "Wrong password!";
                 PasswordValid = false;
-                return false;
             }
             Admin.Id = queryModel.Id;
-            return true;
         }
     }
 }

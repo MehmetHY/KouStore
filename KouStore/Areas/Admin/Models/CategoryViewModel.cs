@@ -7,7 +7,7 @@ namespace KouStore.Areas.Admin.Models
 {
     public class CategoryViewModel : IViewModel
     {
-        public CategoryModel Category { get; set; }
+        public CategoryModel Category { get; set; } = new();
         public bool NameValid { get; set; } = true;
         public string NameError { get; set; } = string.Empty;
         public AppDbContext? DbContext { get; set; }
@@ -20,7 +20,33 @@ namespace KouStore.Areas.Admin.Models
 
         public void ValidateViewModel()
         {
-            throw new NotImplementedException();
+            TrimNameField();
+            if (IsNameEmpty()) return;
+            CheckNameExists();
         }
+        private void TrimNameField()
+        {
+            Category.Name = Category.Name?.Trim() ?? string.Empty;
+        }
+        private bool IsNameEmpty()
+        {
+            if (Category.Name == string.Empty)
+            {
+                NameValid = false;
+                NameError = "Category name cannot be empty!";
+                return true;
+            }
+            return false;
+        }
+        private void CheckNameExists()
+        {
+            CategoryModel? queryModel = DbContext.GetCategoryByName(Category.Name);
+            if (queryModel != null)
+            {
+                NameValid = false;
+                NameError = $"Category \"{Category.Name}\" already exists!";
+            }
+        }
+
     }
 }
