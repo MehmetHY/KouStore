@@ -1,7 +1,10 @@
 ﻿@model List<KouStore.Models.CategoryModel>
 
+<h1>Manage Categories</h1>
+
 <a asp-action="Create">Create New Category</a>
 <br />
+
 @foreach (var category in @Model)
 {
     <p>@category.Name</p>
@@ -9,4 +12,5 @@
     <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
     <br />
 }
+
 <a asp-controller="Dashboard" asp-action="Index">Back</a>
