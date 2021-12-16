@@ -8,31 +8,26 @@ namespace KouStore.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly AppDbContext _db;
-        public DashboardController(AppDbContext db)
-        {
-            _db = db;
-        }
+        public DashboardController(AppDbContext db) { _db = db; }
+
         [HttpGet]
         [Route("[Area]/[Controller]")]
-        public IActionResult Index()
-        {
-            return SignInManager.ConvertActionToAdminAuthenticatedAction(View(), this);
-        }
+        public IActionResult Index() =>
+            View().ToAdminAuthAction(this);
+
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
-        public IActionResult ManageProducts() 
-            => SignInManager.ConvertActionToAdminAuthenticatedAction(View(_db.AllProducts), this);
+        public IActionResult ManageProducts() => 
+            View(_db.AllProducts).ToAdminAuthAction(this);
+
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
-        public IActionResult ManageCategories()
-        {
-            return View();
-        }
+        public IActionResult ManageCategories() =>
+            View().ToAdminAuthAction(this);
+
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
-        public IActionResult ManageCustomers()
-        {
-            return View();
-        }
+        public IActionResult ManageCustomers() =>
+            View().ToAdminAuthAction(this);
     }
 }
