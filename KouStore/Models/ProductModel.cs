@@ -20,7 +20,5 @@ namespace KouStore.Models
         public int Price { get; set; }
         [Required]
         public int PriceFraction { get; set; }
-        [Required]
-        public CategoryModel? Category { get; set; }
     }
 }

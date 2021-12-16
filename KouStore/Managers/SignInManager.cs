@@ -18,7 +18,7 @@ namespace KouStore.Managers
         {
             session.Remove(ADMIN_ID_KEY);
         }
-        public static IActionResult GetAdminAuthenticatedAction(IActionResult action, Controller controller)
+        public static IActionResult ConvertActionToAdminAuthenticatedAction(IActionResult action, Controller controller)
         {
             if (IsAdminSignedIn(controller.HttpContext.Session))
             {

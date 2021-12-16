@@ -10,5 +10,6 @@ namespace KouStore.Models
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string? Name { get; set; } = null;
+        public List<ProductModel> Products { get; set; } = new List<ProductModel>();
     }
 }

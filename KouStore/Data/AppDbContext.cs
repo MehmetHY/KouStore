@@ -9,14 +9,16 @@ namespace KouStore.Data
         {
         }
         public DbSet<AdminModel> Admins { get; set; }
-        public DbSet<CustomerModel> Customers { get; set; }
         public DbSet<ProductModel> Products { get; set; }
-        public DbSet<CategoryModel> Categorys { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<CustomerModel> Customers { get; set; }
 
         public AdminModel? GetAdminByName(string? name)
         {
             if (name == null) return null;
             return Admins.Where(a => a.Name == name).FirstOrDefault();
         }
+
+        public List<ProductModel> AllProducts => Products.ToList();
     }
 }
