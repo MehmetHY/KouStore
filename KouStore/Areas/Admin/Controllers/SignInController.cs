@@ -22,7 +22,7 @@ namespace KouStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(FormModel formModel)
+        public IActionResult Index(FormModel<AdminViewModel> formModel)
         {
             formModel.Setup( this, 
                              nameof(Index), 

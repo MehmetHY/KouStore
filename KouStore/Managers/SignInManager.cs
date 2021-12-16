@@ -12,10 +12,9 @@ namespace KouStore.Managers
         {
             return session.GetString(ADMIN_ID_KEY) != null;
         }
-        public static void SignInAdmin(IViewModel model)
+        public static void SignInAdmin(AdminViewModel model)
         {
-            AdminViewModel? adminViewModel = model as AdminViewModel;
-            adminViewModel?.Session?.SetString(ADMIN_ID_KEY, adminViewModel.Admin.Id.ToString());
+            model.Session?.SetString(ADMIN_ID_KEY, model.Admin.Id.ToString());
         }
         public static void LogOutAdmin(ISession session)
         {
