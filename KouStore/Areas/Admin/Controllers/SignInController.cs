@@ -10,32 +10,28 @@ namespace KouStore.Areas.Admin.Controllers
     public class SignInController : Controller
     {
         private readonly AppDbContext _db;
-        public SignInController(AppDbContext db)
-        {
-            _db = db;
-        }
+        public SignInController(AppDbContext db) { _db = db; }
 
         [Route("[Area]/[Controller]")]
         [HttpGet]
         public IActionResult Index()
         {
             if (SignInManager.IsAdminSignedIn(HttpContext.Session))
-            {
                 return RedirectToAction("Index", "Dashboard");
-            }
             return View(new AdminViewModel());
         }
+
         [HttpPost]
         public IActionResult Index(FormModel formModel)
         {
-            formModel.Setup(
-                this,
-                nameof(Index),
-                RedirectToAction("Index", "Dashboard"),
-                SignInManager.SignInAdmin,
-                _db);
+            formModel.Setup( this, 
+                             nameof(Index), 
+                             RedirectToAction("Index", "Dashboard"), 
+                             SignInManager.SignInAdmin, 
+                             _db );
             return formModel.ProcessForm();
         }
+
         [HttpGet]
         [Route("[Area]/[Controller]/[Action]")]
         public IActionResult Logout()
