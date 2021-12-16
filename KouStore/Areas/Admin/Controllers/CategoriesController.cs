@@ -36,21 +36,21 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Update(FormModel<CategoryViewModel> formModel) =>
             formModel.ProcessForm( this,
-                                    nameof(Update),
-                                    RedirectToAction(nameof(Index)),
-                                    CategoryManager.UpdateFromViewModel,
-                                    _db );
+                                   nameof(Update),
+                                   RedirectToAction(nameof(Index)),
+                                   CategoryManager.UpdateFromViewModel,
+                                   _db );
 
         [HttpGet("{id}")]
-        public IActionResult Delete(int id)
-        {
-            return View();
-        }
+        public IActionResult Delete(int id) =>
+            RedirectToAction(nameof(Delete), new { category = _db.GetCategoryById(id) })
+            .ToAdminAuthAction(this);
 
         [HttpPost]
         public IActionResult Delete(CategoryModel category)
         {
-            return View();
+            category.DeleteRecord(_db);
+            return RedirectToAction(nameof(Index));
         }
 
 

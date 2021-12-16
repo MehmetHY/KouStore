@@ -24,5 +24,10 @@ namespace KouStore.Managers
             db?.Categories.Update(model);
             db?.SaveChanges();
         }
+        public static void DeleteRecord(this CategoryModel model, AppDbContext db)
+        {
+            db.Remove(model);
+            db.SaveChanges();
+        }
     }
 }
