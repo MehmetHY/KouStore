@@ -12,17 +12,9 @@ namespace KouStore.Models
         public IActionResult TargetActionResult { get; set; }
         public delegate void ViewModelAction(T model);
         public ViewModelAction SuccessAction { get; set; }
-        public void Setup(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db)
+        public IActionResult ProcessForm(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db) 
         {
-            CurrentController = controller;
-            ViewName = viewName;
-            TargetActionResult = targetAction;
-            SuccessAction = onSuccess;
-            ViewModel.Setup(db, controller);
-        }
-        public IActionResult ProcessForm() 
-        {
-            ViewModel.ValidateViewModel();
+            Setup(controller, viewName, targetAction, onSuccess, db);
             if (IsFormValid())
             {
                 SuccessAction(ViewModel);
@@ -30,6 +22,18 @@ namespace KouStore.Models
             }
             return CurrentController.View(ViewName, this);
         }
-        private bool IsFormValid() => ViewModel.Result;
+        private void Setup(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db)
+        {
+            CurrentController = controller;
+            ViewName = viewName;
+            TargetActionResult = targetAction;
+            SuccessAction = onSuccess;
+            ViewModel.Setup(db, controller);
+        }
+        private bool IsFormValid()
+        {
+            ViewModel.ValidateViewModel();
+            return ViewModel.Result;
+        }
     }
 }

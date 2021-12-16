@@ -15,26 +15,23 @@ namespace KouStore.Areas.Admin.Controllers
         [Route("[Area]/[Controller]")]
         [HttpGet]
         public IActionResult Index() =>
-            SignInManager.IsAdminSignedIn(HttpContext.Session) ?
+            this.IsAdminSignedIn() ?
                 RedirectToAction("Index", "Dashboard") :
                 View(new FormModel<AdminViewModel>());
 
         [HttpPost]
-        public IActionResult Index(FormModel<AdminViewModel> formModel)
-        {
-            formModel.Setup( this, 
-                             nameof(Index), 
-                             RedirectToAction("Index", "Dashboard"), 
-                             SignInManager.SignInAdmin, 
-                             _db );
-            return formModel.ProcessForm();
-        }
+        public IActionResult Index(FormModel<AdminViewModel> formModel) =>
+            formModel.ProcessForm( this,
+                                   nameof(Index),
+                                   RedirectToAction("Index", "Dashboard"),
+                                   SignInManager.SignInAdmin,
+                                   _db );
 
         [HttpGet]
         [Route("[Area]/[Action]")]
         public IActionResult Logout()
         {
-            SignInManager.LogOutAdmin(HttpContext.Session);
+            this.LogOutAdmin();
             return RedirectToAction(nameof(Index));
         }
     }
