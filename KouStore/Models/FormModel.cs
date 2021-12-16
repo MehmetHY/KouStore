@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Models
 {
-    public class FormModel<T> where T : IViewModel
+    public class FormModel<T> where T : IViewModel, new()
     {
-        public T ViewModel { get; set; }
+        public T ViewModel { get; set; } = new T();
         public Controller CurrentController { get; set; }
         public string ViewName { get; set; } = string.Empty;
         public IActionResult TargetActionResult { get; set; }
@@ -28,7 +28,7 @@ namespace KouStore.Models
                 SuccessAction(ViewModel);
                 return TargetActionResult;
             }
-            return CurrentController.RedirectToAction(ViewName, new { formModel = this });
+            return CurrentController.View(ViewName, this);
         }
         private bool IsFormValid() => ViewModel.Result;
     }

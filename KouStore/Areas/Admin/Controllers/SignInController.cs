@@ -18,7 +18,7 @@ namespace KouStore.Areas.Admin.Controllers
         {
             if (SignInManager.IsAdminSignedIn(HttpContext.Session))
                 return RedirectToAction("Index", "Dashboard");
-            return View(new AdminViewModel());
+            return View(new FormModel<AdminViewModel>());
         }
 
         [HttpPost]
