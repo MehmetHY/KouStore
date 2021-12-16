@@ -1,0 +1,14 @@
+﻿@using KouStore.Areas.Admin.Models
+@model KouStore.Models.FormModel<CategoryViewModel>
+
+<h1>Update Category</h1>
+
+<form method="post" asp-action="Index">
+    <label asp-for="ViewModel.Category.Name"></label>
+    <input asp-for="ViewModel.Category.Name" />
+    <br />
+    <input type="submit" value="Update" />
+</form>
+
+<br />
+<a asp-action="Index">Back</a>
