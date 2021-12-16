@@ -13,6 +13,10 @@ namespace KouStore.Areas.Admin.Models
         public string PasswordErrorMessage { get; set; } = string.Empty;
         public AppDbContext? DbContext { get; set; }
         public bool Result => NameValid && PasswordValid;
+        public void Setup(AppDbContext db)
+        {
+            DbContext = db;
+        }
         public void ValidateViewModel()
         {
             TrimWhiteSpace();

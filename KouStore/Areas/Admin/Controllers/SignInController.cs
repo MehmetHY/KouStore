@@ -1,6 +1,7 @@
 ﻿using KouStore.Areas.Admin.Models;
 using KouStore.Data;
 using KouStore.Managers;
+using KouStore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Areas.Admin.Controllers
@@ -25,8 +26,9 @@ namespace KouStore.Areas.Admin.Controllers
             return View(new AdminViewModel());
         }
         [HttpPost]
-        public IActionResult Index(AdminViewModel model)
+        public IActionResult Index(FormModel model)
         {
+            
             if (model.IsFormValid(_db))
             {
                 SignInManager.SignInAdmin(HttpContext.Session, model.Admin);
