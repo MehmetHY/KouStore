@@ -1,6 +1,7 @@
 ﻿using KouStore.Data;
 using KouStore.Models;
 using KouStore.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Areas.Admin.Models
 {
@@ -12,10 +13,12 @@ namespace KouStore.Areas.Admin.Models
         public string NameErrorMessage { get; set; } = string.Empty;
         public string PasswordErrorMessage { get; set; } = string.Empty;
         public AppDbContext? DbContext { get; set; }
+        public ISession? Session { get; set; }
         public bool Result => NameValid && PasswordValid;
-        public void Setup(AppDbContext db)
+        public void Setup(AppDbContext db, Controller controller)
         {
             DbContext = db;
+            Session = controller.HttpContext.Session;
         }
         public void ValidateViewModel()
         {

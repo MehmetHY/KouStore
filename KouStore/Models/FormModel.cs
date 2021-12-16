@@ -18,7 +18,7 @@ namespace KouStore.Models
             ViewName = viewName;
             TargetActionResult = targetAction;
             SuccessAction = onSuccess;
-            ViewModel.DbContext = db;
+            ViewModel.Setup(db, controller);
         }
         public IActionResult ProcessForm() 
         {

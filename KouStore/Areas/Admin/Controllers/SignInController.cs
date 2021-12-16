@@ -28,7 +28,7 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Index(FormModel model)
         {
-            
+            model.Setup(this, nameof(Index), RedirectToAction("Index", "Dashboard"), SignInManager.SignInAdmin, _db);
             if (model.IsFormValid(_db))
             {
                 SignInManager.SignInAdmin(HttpContext.Session, model.Admin);

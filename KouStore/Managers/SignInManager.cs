@@ -1,4 +1,6 @@
-﻿using KouStore.Models;
+﻿using KouStore.Areas.Admin.Models;
+using KouStore.Models;
+using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Managers
@@ -10,9 +12,10 @@ namespace KouStore.Managers
         {
             return session.GetString(ADMIN_ID_KEY) != null;
         }
-        public static void SignInAdmin(ISession session, AdminModel admin)
+        public static void SignInAdmin(IViewModel model)
         {
-            session.SetString(ADMIN_ID_KEY, admin.Id.ToString());
+            AdminViewModel? adminViewModel = model as AdminViewModel;
+            adminViewModel?.Session?.SetString(ADMIN_ID_KEY, adminViewModel.Admin.Id.ToString());
         }
         public static void LogOutAdmin(ISession session)
         {
