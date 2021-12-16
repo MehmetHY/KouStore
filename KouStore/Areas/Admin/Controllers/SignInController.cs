@@ -22,10 +22,10 @@ namespace KouStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index", "Dashboard");
             }
-            return View(new AdminFormModel());
+            return View(new AdminViewModel());
         }
         [HttpPost]
-        public IActionResult Index(AdminFormModel model)
+        public IActionResult Index(AdminViewModel model)
         {
             if (model.IsFormValid(_db))
             {

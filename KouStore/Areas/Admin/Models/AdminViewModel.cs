@@ -1,20 +1,28 @@
 ﻿using KouStore.Data;
 using KouStore.Models;
+using KouStore.Models.Interfaces;
 
 namespace KouStore.Areas.Admin.Models
 {
-    public class AdminFormModel
+    public class AdminViewModel : IViewModel
     {
         public AdminModel Admin { get; set; } = new();
         public bool NameValid { get; set; } = true;
         public bool PasswordValid { get; set; } = true;
-        public string NameErrorMessage { get; set; } = "";
-        public string PasswordErrorMessage { get; set; } = "";
-
+        public string NameErrorMessage { get; set; } = string.Empty;
+        public string PasswordErrorMessage { get; set; } = string.Empty;
+        public AppDbContext? DbContext { get; set; }
+        public bool Result => NameValid && PasswordValid;
+        public void ValidateViewModel()
+        {
+            TrimWhiteSpace();
+            if (IsThereAnyEmptyForm()) return;
+            if (!AreNameAndPasswordCorrect()) return;
+        }
         private void TrimWhiteSpace()
         {
-            Admin.Name = (Admin.Name ?? "").Trim();
-            Admin.Password = (Admin.Password ?? "").Trim();
+            Admin.Name = (Admin.Name ?? string.Empty).Trim();
+            Admin.Password = (Admin.Password ?? string.Empty).Trim();
         }
         private bool IsThereAnyEmptyForm()
         {
@@ -33,9 +41,9 @@ namespace KouStore.Areas.Admin.Models
             }
             return result;
         }
-        private bool AreNameAndPasswordCorrect(AppDbContext db)
+        private bool AreNameAndPasswordCorrect()
         {
-            AdminModel? queryModel = db.GetAdminByName(Admin.Name);
+            AdminModel? queryModel = DbContext.GetAdminByName(Admin.Name);
             if (queryModel == null)
             {
                 NameErrorMessage = $"Admin name \"{Admin.Name}\" doesn't exists!";
@@ -50,18 +58,6 @@ namespace KouStore.Areas.Admin.Models
             }
             Admin.Id = queryModel.Id;
             return true;
-        }
-        private void ValidateForm(AppDbContext db)
-        {
-            TrimWhiteSpace();
-            if (IsThereAnyEmptyForm()) return;
-            if (!AreNameAndPasswordCorrect(db)) return;
-        }
-        private bool GetFinalResult() => NameValid && PasswordValid;
-        public bool IsFormValid(AppDbContext db)
-        {
-            ValidateForm(db);
-            return GetFinalResult();
         }
     }
 }
