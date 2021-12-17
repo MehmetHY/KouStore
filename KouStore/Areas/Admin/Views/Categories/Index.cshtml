@@ -4,13 +4,15 @@
 
 <a asp-action="Create">Create New Category</a>
 <br />
+<br />
 
 @foreach (var category in @Model)
 {
-    <span>@category.Name</span>
+    <a asp-area="Admin" asp-controller="Products" asp-action="Index" asp-route-categoryName="@category.Name">@category.Name</a>
     <a asp-action="Update" asp-route-id="@category.Id">Update</a>
     <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
     <br />
 }
 
+<br />
 <a asp-controller="Dashboard" asp-action="Index">Back</a>
