@@ -11,7 +11,7 @@ namespace KouStore.Models
         [Required]
         [DataType(DataType.Text)]
         [StringLength(50)]
-        public string? Name { get; set; } = null;
+        public string Name { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100)]
