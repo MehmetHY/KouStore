@@ -20,6 +20,8 @@ namespace KouStore.Data
 
         public CategoryModel? GetCategoryById(int id)
             => Categories.Where(c => c.Id == id).FirstOrDefault();
+        public ProductModel? GetProductById(int id)
+            => Products.Where(c => c.Id == id).FirstOrDefault();
 
         public AdminModel? GetAdminByName(string? name) =>
             name == null ? null : Admins.Where(a => a.Name == name).FirstOrDefault();

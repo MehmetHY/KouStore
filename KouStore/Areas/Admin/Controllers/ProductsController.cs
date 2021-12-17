@@ -44,24 +44,41 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Update(string categoryName, int id)
         {
-            return View(new FormModel<ProductViewModel>());
+            CategoryModel? category = _db.GetCategoryByName(categoryName);
+            ProductModel? product = _db.GetProductById(id);
+            return category == null || product == null ?
+                RedirectToAction(nameof(Index), new { categoryName = categoryName })
+                    .ToAdminAuthAction(this) 
+                :
+                View(new FormModel<ProductViewModel>(new(category, product)))
+                    .ToAdminAuthAction(this);
         }
         [HttpPost]
-        public IActionResult Update([FromForm] FormModel<ProductViewModel> formModel)
-        {
-            return View();
-        }
+        public IActionResult Update([FromForm] FormModel<ProductViewModel> formModel) =>
+            formModel.ProcessForm( this,
+                                   nameof(Update),
+                                   RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
+                                   ProductManager.UpdateFromViewModel,
+                                   _db );
         
         [Route("[Area]/{categoryName}/[Controller]/[Action]/{id}")]
         [HttpGet]
         public IActionResult Delete(string categoryName, int id)
         {
-            return View(new FormModel<ProductViewModel>());
+            CategoryModel? category = _db.GetCategoryByName(categoryName);
+            ProductModel? product = _db.GetProductById(id);
+            return category == null || product == null ?
+                RedirectToAction(nameof(Index), new { categoryName = categoryName })
+                    .ToAdminAuthAction(this)
+                :
+                Delete(category, product).ToAdminAuthAction(this);
         }
         [HttpPost]
-        public IActionResult Delete([FromForm] FormModel<ProductViewModel> formModel)
+        public IActionResult Delete(CategoryModel category, ProductModel product)
         {
-            return View();
+            if (this.IsAdminSignedIn())
+                product.DeleteRecord(_db);
+            return RedirectToAction(nameof(Index), new { categoryName = category.Name }).ToAdminAuthAction(this);
         }
     }
 }
