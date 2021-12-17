@@ -25,6 +25,14 @@ namespace KouStore.Areas.Admin.Models
 
         public bool Result => TitleValid && DescriptionValid && ImageValid && PriceValid;
 
+        public ProductViewModel() {}
+        public ProductViewModel(CategoryModel category) { Category = category; }
+        public ProductViewModel(CategoryModel category, ProductModel product) 
+        { 
+            Category = category; 
+            Product = product;
+        }
+
         public void Setup(AppDbContext db, Controller _)
         {
             DbContext = db;

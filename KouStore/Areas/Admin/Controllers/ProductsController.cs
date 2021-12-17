@@ -19,20 +19,26 @@ namespace KouStore.Areas.Admin.Controllers
             CategoryModel? model = _db.GetCategoryByName(categoryName);
             return model == null ?
                 RedirectToAction("Index", "Categories").ToAdminAuthAction(this) :
-                View(model);
+                View(model).ToAdminAuthAction(this);
         }
 
         [Route("[Area]/{categoryName}/[Controller]/[Action]")]
         [HttpGet]
         public IActionResult Create(string categoryName)
         {
-            return View(new FormModel<ProductViewModel>());
+            CategoryModel? model = _db.GetCategoryByName(categoryName);
+            
+            return model == null ? 
+                RedirectToAction("Index", "Categories").ToAdminAuthAction(this) :
+                View(new FormModel<ProductViewModel>(new(model))).ToAdminAuthAction(this);
         }
         [HttpPost]
         public IActionResult Create([FromForm] FormModel<ProductViewModel> formModel)
-        {
-            return View();
-        }
+            => formModel.ProcessForm( this,
+                                      nameof(Create),
+                                      RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
+                                      ProductManager.CreateFromViewModel,
+                                      _db );
 
         [Route("[Area]/{categoryName}/[Controller]/[Action]/{id}")]
         [HttpGet]
