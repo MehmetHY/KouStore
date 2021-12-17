@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static KouStore.Config.Settings;
 
 namespace KouStore.Models
@@ -17,8 +18,7 @@ namespace KouStore.Models
         [Required]
         public byte[]? Image { get; set; }
         [Required]
-        public int Price { get; set; }
-        [Required]
-        public int PriceFraction { get; set; }
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal Price { get; set; } = decimal.Zero;
     }
 }

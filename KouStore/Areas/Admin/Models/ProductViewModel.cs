@@ -1,5 +1,4 @@
-﻿
-using KouStore.Data;
+﻿using KouStore.Data;
 using KouStore.Models;
 using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -60,14 +59,12 @@ namespace KouStore.Areas.Admin.Models
         }
         private bool IsPriceValid()
         {
-            if (Product.Price < 0 || Product.PriceFraction < 0)
+            if (Product.Price < decimal.Zero)
             {
                 PriceError = "Price cannot be negative!";
                 PriceValid = false;
                 return false;
             }
-            while (Product.PriceFraction > 99)
-                Product.PriceFraction /= 10;
             return true;
         }
         private void ValidateImage()
@@ -93,6 +90,8 @@ namespace KouStore.Areas.Admin.Models
             MemoryStream ms = new();
             ImageFile.CopyTo(ms);
             Product.Image = ms.ToArray();
+            ms.Close();
+            ms.Dispose();
         }
     }
 }
