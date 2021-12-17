@@ -1,6 +1,4 @@
 ﻿using KouStore.Areas.Admin.Models;
-using KouStore.Models;
-using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Managers

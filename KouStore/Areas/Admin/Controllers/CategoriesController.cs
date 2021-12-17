@@ -53,12 +53,11 @@ namespace KouStore.Areas.Admin.Controllers
         [Route("[Area]/[Controller]/[Action]/{id}")]
         [HttpGet]
         public IActionResult Delete(int id) =>
-            RedirectToAction(nameof(Delete), new { model = _db.GetCategoryById(id)}).ToAdminAuthAction(this);
+            Delete(_db.GetCategoryById(id)).ToAdminAuthAction(this);
 
-        [HttpPost()]
+        [HttpPost]
         public IActionResult Delete(CategoryModel? model)
         {
-            
             model?.DeleteRecord(_db);
             return RedirectToAction(nameof(Index));
         }
