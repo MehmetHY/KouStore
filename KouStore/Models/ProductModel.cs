@@ -10,10 +10,10 @@ namespace KouStore.Models
         [Required]
         [DataType(DataType.Text)]
         [StringLength(50)]
-        public string? Title { get; set; } = null;
+        public string Title { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Text)]
-        public string Description { get; set; } = "";
+        public string Description { get; set; } = string.Empty;
         [Required]
         public byte[]? Image { get; set; }
         [Required]

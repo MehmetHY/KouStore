@@ -3,6 +3,7 @@ using KouStore.Data;
 using KouStore.Models;
 using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using KouStore.Config;
 
 namespace KouStore.Areas.Admin.Models
 {
@@ -10,6 +11,7 @@ namespace KouStore.Areas.Admin.Models
     {
         public ProductModel Product { get; set; } = new();
         public CategoryModel? Category { get; set; }
+        public IFormFile? ImageFile { get; set; }
         public bool TitleValid { get; set; } = true;
         public bool DescriptionValid { get; set; } = true;
         public bool ImageValid { get; set; } = true;
@@ -27,16 +29,70 @@ namespace KouStore.Areas.Admin.Models
         {
             DbContext = db;
         }
-
         public void ValidateViewModel()
         {
             TrimFields();
+            if (IsThereAnyEmptyTextField()) return;
+            if (!IsPriceValid()) return;
+            ValidateImage();
         }
-
         private void TrimFields()
         {
             Product.Title = Product.Title?.Trim() ?? string.Empty;
             Product.Description = Product.Description?.Trim() ?? string.Empty;
+        }
+        private bool IsThereAnyEmptyTextField()
+        {
+            bool result = false;
+            if (string.IsNullOrEmpty(Product.Title))
+            {
+                TitleError = "Title cannot be empty!";
+                TitleValid = false;
+                result = true;
+            }
+            if (string.IsNullOrEmpty(Product.Description))
+            {
+                DescriptionError = "Description cannot be empty!";
+                DescriptionValid = false;
+                result = true;
+            }
+            return result;
+        }
+        private bool IsPriceValid()
+        {
+            if (Product.Price < 0 || Product.PriceFraction < 0)
+            {
+                PriceError = "Price cannot be negative!";
+                PriceValid = false;
+                return false;
+            }
+            while (Product.PriceFraction > 99)
+                Product.PriceFraction /= 10;
+            return true;
+        }
+        private void ValidateImage()
+        {
+            if (ImageFile == null)
+            {
+                ImageError = "Image cannot be empty!";
+                ImageValid = false;
+                return;
+            }
+            if (ImageFile.Length > Settings.MaxImageSizeInBytes)
+            {
+                ImageError = $"Image size cannot be greater than {Settings.MaxImageSizeInMB}MB!";
+                ImageValid = false;
+                return;
+            }
+            string extension = Path.GetExtension(ImageFile.FileName);
+            if (!Settings.AllowedImageExtensions.Contains(extension))
+            {
+                ImageError = "Image extension must be \".JPG\"!";
+                ImageValid = false;
+            }
+            MemoryStream ms = new();
+            ImageFile.CopyTo(ms);
+            Product.Image = ms.ToArray();
         }
     }
 }
