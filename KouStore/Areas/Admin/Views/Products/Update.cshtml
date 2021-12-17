@@ -11,7 +11,10 @@
     <label asp-for="ViewModel.Product.Description"></label>
     <input asp-for="ViewModel.Product.Description" />
     <br />
-    <label asp-for="ViewModel.Product.Image"></label>
+    <label>Current Image</label>
+    <img src="@Model.ViewModel.Product.GetImageDataURL()" width="256" height="256" />
+    <br />
+    <label>New Image</label>
     <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
     <br />
     <label asp-for="ViewModel.Product.Price"></label>

@@ -70,29 +70,37 @@ namespace KouStore.Areas.Admin.Models
         }
         private void ValidateImage()
         {
+            if (!IsUploadImageValid() && Product.Image == null) return;
+            if (Product.Image != null)
+            {
+                ImageError = string.Empty;
+                ImageValid = true;
+                return;
+            }
+            Product.SetImageDataURL(ImageFile);
+        }
+        private bool IsUploadImageValid()
+        {
             if (ImageFile == null)
             {
                 ImageError = "Image cannot be empty!";
                 ImageValid = false;
-                return;
+                return false;
             }
             if (ImageFile.Length > Settings.MaxImageSizeInBytes)
             {
                 ImageError = $"Image size cannot be greater than {Settings.MaxImageSizeInMB}MB!";
                 ImageValid = false;
-                return;
+                return false;
             }
             string extension = Path.GetExtension(ImageFile.FileName);
             if (!Settings.AllowedImageExtensions.Contains(extension))
             {
-                ImageError = "Image extension must be \".JPG\"!";
+                ImageError = "Image extension must be \".jpeg\"!";
                 ImageValid = false;
+                return false;
             }
-            MemoryStream ms = new();
-            ImageFile.CopyTo(ms);
-            Product.Image = ms.ToArray();
-            ms.Close();
-            ms.Dispose();
+            return true;
         }
     }
 }
