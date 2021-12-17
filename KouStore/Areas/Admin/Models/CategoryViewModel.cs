@@ -13,6 +13,15 @@ namespace KouStore.Areas.Admin.Models
         public AppDbContext? DbContext { get; set; }
         public bool Result => NameValid;
 
+        public CategoryViewModel()
+        {
+
+        }
+        public CategoryViewModel(CategoryModel category)
+        {
+            Category = category;
+        }
+
         public void Setup(AppDbContext db, Controller _)
         {
             DbContext = db;

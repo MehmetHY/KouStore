@@ -12,6 +12,14 @@ namespace KouStore.Models
         public IActionResult TargetActionResult { get; set; }
         public delegate void ViewModelAction(T model);
         public ViewModelAction SuccessAction { get; set; }
+        public FormModel()
+        {
+
+        }
+        public FormModel(T viewModel)
+        {
+            ViewModel = viewModel;
+        }
         public IActionResult ProcessForm(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db) 
         {
             Setup(controller, viewName, targetAction, onSuccess, db);

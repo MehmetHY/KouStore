@@ -35,9 +35,9 @@ namespace KouStore.Areas.Admin.Controllers
         public IActionResult Update(int id)
         {
             CategoryModel? model = _db.GetCategoryById(id);
-            if (model == null) return RedirectToAction(nameof(Index));
-            CategoryViewModel viewModel = new CategoryViewModel { Category = model };
-            return View(new FormModel<CategoryViewModel> { ViewModel = viewModel }).ToAdminAuthAction(this);
+            return model == null ?
+                RedirectToAction(nameof(Index)) :
+                View(new FormModel<CategoryViewModel>(new(model))).ToAdminAuthAction(this);
         }
 
         [Route("[Area]/[Controller]/[Action]/{formModel}")]
@@ -58,7 +58,7 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(CategoryModel? model)
         {
-            model?.DeleteRecord(_db);
+            if (this.IsAdminSignedIn()) model?.DeleteRecord(_db);
             return RedirectToAction(nameof(Index));
         }
     }
