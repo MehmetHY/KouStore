@@ -14,7 +14,7 @@ namespace KouStore.Managers
 
         public static AdminModel? GetById(int? id, AppDbContext? db) =>
             id == null || db == null ? null: db.Admins.FirstOrDefault(a => a.Id == id);
-        public static AdminModel? GetByName(string? name, AppDbContext db) =>
+        public static AdminModel? GetByName(string? name, AppDbContext? db) =>
             name == null || db == null ? null : db.Admins.FirstOrDefault(a => a.Name == name);
 
         public static void UpdateRecord(this AdminModel? admin, AppDbContext? db)

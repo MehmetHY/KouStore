@@ -1,5 +1,6 @@
 ﻿using KouStore.Data;
 using KouStore.Models;
+using KouStore.Managers;
 using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,7 +50,7 @@ namespace KouStore.Areas.Admin.Models
         }
         private void CheckNameExists()
         {
-            CategoryModel? queryModel = DbContext.GetCategoryByName(Category.Name);
+            CategoryModel? queryModel = CategoryDbManager.GetCategory(Category.Name, DbContext);
             if (queryModel != null)
             {
                 NameValid = false;

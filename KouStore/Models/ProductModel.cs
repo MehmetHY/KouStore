@@ -26,8 +26,9 @@ namespace KouStore.Models
             string.Empty : 
             string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(Image));
 
-        public void SetImageDataURL(IFormFile file)
+        public void SetImageDataURL(IFormFile? file)
         {
+            if (file == null) return;
             MemoryStream ms = new();
             file.CopyTo(ms);
             Image = ms.ToArray();

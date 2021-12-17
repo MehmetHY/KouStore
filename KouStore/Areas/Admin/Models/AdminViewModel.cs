@@ -1,5 +1,6 @@
 ﻿using KouStore.Data;
 using KouStore.Models;
+using KouStore.Managers;
 using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,7 +51,7 @@ namespace KouStore.Areas.Admin.Models
         }
         private void CheckNameAndPasswordCorrect()
         {
-            AdminModel? queryModel = DbContext.GetAdminByName(Admin.Name);
+            AdminModel? queryModel = AdminDbManager.GetByName(Admin.Name, DbContext);
             if (queryModel == null)
             {
                 NameErrorMessage = $"Admin name \"{Admin.Name}\" doesn't exists!";
