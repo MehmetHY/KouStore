@@ -1,5 +1,7 @@
 ﻿using KouStore.Areas.Admin.Models;
+using KouStore.Data;
 using KouStore.Models;
+using KouStore.Managers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Areas.Admin.Controllers
@@ -7,12 +9,17 @@ namespace KouStore.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductsController : Controller
     {
+        private readonly AppDbContext _db;
+        public ProductsController(AppDbContext db) { _db = db; }
+
         [Route("[Area]/{categoryName}/[Controller]/[Action]")]
         [HttpGet]
         public IActionResult Index(string categoryName)
         {   
-
-            return View();
+            CategoryModel? model = _db.GetCategoryByName(categoryName);
+            return model == null ?
+                RedirectToAction("Index", "Categories").ToAdminAuthAction(this) :
+                View(model);
         }
 
         [Route("[Area]/{categoryName}/[Controller]/[Action]")]
