@@ -15,10 +15,9 @@ namespace KouStore.Areas.Admin.Controllers
         [Route("[Area]/{categoryName}/[Controller]/[Action]")]
         [HttpGet]
         public IActionResult Index(string categoryName)
-        {   
-            CategoryModel? model = _db.GetCategoryByName(categoryName);
-            if (model != null)
-                model.Products = _db.Products.ToList();
+        {
+            CategoryModel? model = CategoryDbManager.GetCategory(categoryName, _db);
+            model?.LoadProducts(_db);
             return model == null ?
                 RedirectToAction("Index", "Categories").ToAdminAuthAction(this) :
                 View(model).ToAdminAuthAction(this);
@@ -28,7 +27,7 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create(string categoryName)
         {
-            CategoryModel? model = _db.GetCategoryByName(categoryName);
+            CategoryModel? model = CategoryDbManager.GetCategory(categoryName, _db);
             return model == null ? 
                 RedirectToAction("Index", "Categories").ToAdminAuthAction(this) :
                 View(new FormModel<ProductViewModel>(new(model))).ToAdminAuthAction(this);
@@ -38,7 +37,7 @@ namespace KouStore.Areas.Admin.Controllers
         public IActionResult Create([FromForm] FormModel<ProductViewModel> formModel)
             => formModel.ProcessForm( this,
                                       nameof(Create),
-                                      RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
+                                      RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category?.Name ?? string.Empty }),
                                       ProductDbManager.CreateFromViewModel,
                                       _db );
 
@@ -46,8 +45,8 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Update(string categoryName, int id)
         {
-            CategoryModel? category = _db.GetCategoryByName(categoryName);
-            ProductModel? product = _db.GetProductById(id);
+            CategoryModel? category = CategoryDbManager.GetCategory(categoryName, _db);
+            ProductModel? product = ProductDbManager.GetProduct(id, _db);
             return category == null || product == null ?
                 RedirectToAction(nameof(Index), new { categoryName = categoryName })
                     .ToAdminAuthAction(this) 
@@ -60,7 +59,7 @@ namespace KouStore.Areas.Admin.Controllers
         public IActionResult Update([FromForm] FormModel<ProductViewModel> formModel) =>
             formModel.ProcessForm( this,
                                    nameof(Update),
-                                   RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
+                                   RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category?.Name ?? string.Empty }),
                                    ProductDbManager.UpdateFromViewModel,
                                    _db );
         
@@ -68,8 +67,8 @@ namespace KouStore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(string categoryName, int id)
         {
-            CategoryModel? category = _db.GetCategoryByName(categoryName);
-            ProductModel? product = _db.GetProductById(id);
+            CategoryModel? category = CategoryDbManager.GetCategory(categoryName, _db);
+            ProductModel? product = ProductDbManager.GetProduct(id, _db);
             return category == null || product == null ?
                 RedirectToAction(nameof(Index), new { categoryName = categoryName })
                     .ToAdminAuthAction(this)

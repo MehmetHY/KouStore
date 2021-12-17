@@ -59,7 +59,7 @@ namespace KouStore.Managers
         public static void DeleteCartItems(this ProductModel? product, AppDbContext? db)
         {
             if (product == null || db == null) return;
-            var query = db.CartItems.Where(c => c.ProductId == product.Id);
+            var query = db.CartItems.Where(c => c.ProductId == product.Id).ToList();
             db.CartItems.RemoveRange(query);
             db.SaveChanges();
         }

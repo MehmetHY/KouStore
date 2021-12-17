@@ -44,10 +44,10 @@ namespace KouStore.Managers
         public static void DeleteRecord(this CategoryModel? category, AppDbContext? db)
         {
             if (category == null || db == null) return;
-            category.DeleteProducts(db);
             var query = db.Categories.First(c => c.Id == category.Id || c.Name == category.Name);
             db.Categories.Remove(query);
             db.SaveChanges();
+            category.DeleteProducts(db);
         }
 
         public static void FillProperties(this CategoryModel? category, AppDbContext? db)

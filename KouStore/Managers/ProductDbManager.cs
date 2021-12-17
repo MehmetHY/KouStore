@@ -18,6 +18,9 @@ namespace KouStore.Managers
             db.SaveChanges();
         }
 
+        public static ProductModel? GetProduct(int? id, AppDbContext? db) =>
+            id == null || db == null ? 
+            null : db.Products.FirstOrDefault(p => p.Id == id);
         public static List<ProductModel> GetProducts(this CustomerModel? customer, AppDbContext? db)
         {
             if (customer == null || db == null) return new();
@@ -34,6 +37,11 @@ namespace KouStore.Managers
             category == null || db == null ? 
             new() :
             db.Products.Where(p => p.CategoryId == category.Id).ToList();
+        public static void LoadProducts(this CategoryModel? category, AppDbContext? db)
+        {
+            if (category == null || db == null) return;
+            category.Products = category.GetProducts(db);
+        }
 
         public static void UpdateFromViewModel(ProductViewModel productViewModel)
         {
@@ -54,15 +62,16 @@ namespace KouStore.Managers
         public static void DeleteRecord(this ProductModel? product, AppDbContext? db)
         {
             if (product == null || db == null) return;
-            product.DeleteCartItems(db);
-            var query = db.Products.First(p => p.Id == product.Id);
+            var query = db.Products.FirstOrDefault(p => p.Id == product.Id);
+            if (query == null) return;
             db.Products.Remove(query);
             db.SaveChanges();
+            product.DeleteCartItems(db);
         }
         public static void DeleteProducts(this CategoryModel? category, AppDbContext? db)
         {
             if (category == null || db == null) return;
-            foreach (var product in db.Products.Where(p => p.CategoryId == category.Id))
+            foreach (var product in db.Products.Where(p => p.CategoryId == category.Id).ToList())
             {
                 product.DeleteRecord(db);
             }

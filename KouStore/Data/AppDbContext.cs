@@ -14,17 +14,6 @@ namespace KouStore.Data
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CustomerModel> Customers { get; set; }
 
-        public List<ProductModel> AllProducts => Products.ToList();
         public List<CategoryModel> AllCategories => Categories.ToList();
-
-        public CategoryModel? GetCategoryById(int id)
-            => Categories.Where(c => c.Id == id).FirstOrDefault();
-        public ProductModel? GetProductById(int id)
-            => Products.Where(c => c.Id == id).FirstOrDefault();
-
-        public AdminModel? GetAdminByName(string? name) =>
-            name == null ? null : Admins.Where(a => a.Name == name).FirstOrDefault();
-        public CategoryModel? GetCategoryByName(string? name) =>
-            name == null ? null : Categories.Where(c => c.Name == name).FirstOrDefault();
     }
 }

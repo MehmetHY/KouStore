@@ -11,5 +11,8 @@ namespace KouStore.Models
         [DataType(DataType.Text)]
         [StringLength(50)]
         public string Name { get; set; } = string.Empty;
+
+        [NotMapped]
+        public List<ProductModel> Products { get; set; } = new();
     }
 }
