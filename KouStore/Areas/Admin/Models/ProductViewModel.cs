@@ -23,7 +23,6 @@ namespace KouStore.Areas.Admin.Models
 
         public bool Result => TitleValid && DescriptionValid && ImageValid && PriceValid;
 
-
         public void Setup(AppDbContext db, Controller _)
         {
             DbContext = db;

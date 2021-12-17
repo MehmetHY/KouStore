@@ -1,0 +1,18 @@
+﻿@model KouStore.Models.CategoryModel
+
+<h1>@Model.Name</h1>
+<h3>Products</h3>
+
+<a asp-action="Create" asp-route-categoryName="@Model.Name">Create New Product</a>
+<br />
+
+@foreach (var product in @Model.Products)
+{
+    <img src="@product.GetImageDataURL()" width="64" height="64" />
+    <span>@product.Title</span>
+    <a asp-action="Update" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id">Update</a>
+    <a asp-action="Delete" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id">Delete</a>
+    <br />
+}
+
+<a asp-area="Admin" asp-controller="Categories" asp-action="Index">Back</a>
