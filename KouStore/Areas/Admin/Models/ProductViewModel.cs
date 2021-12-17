@@ -3,6 +3,7 @@ using KouStore.Models;
 using KouStore.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using KouStore.Config;
+using System.ComponentModel.DataAnnotations;
 
 namespace KouStore.Areas.Admin.Models
 {
@@ -10,6 +11,7 @@ namespace KouStore.Areas.Admin.Models
     {
         public ProductModel Product { get; set; } = new();
         public CategoryModel? Category { get; set; }
+        [DataType(DataType.Upload)]
         public IFormFile? ImageFile { get; set; }
         public bool TitleValid { get; set; } = true;
         public bool DescriptionValid { get; set; } = true;
