@@ -3,19 +3,35 @@
 <h1>@Model.ViewModel.Category.Name</h1>
 <h3>Create Product</h3>
 
-<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create">
+<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-categoryName="@Model.ViewModel.Category.Name" asp-route-formModel="@Model">
     <input asp-for="ViewModel.Category.Name" type="hidden" />
     <label asp-for="ViewModel.Product.Title"></label>
     <input asp-for="ViewModel.Product.Title" />
+    @if (!@Model.ViewModel.TitleValid)
+    {
+        <p>@Model.ViewModel.TitleError</p>
+    }
     <br />
     <label asp-for="ViewModel.Product.Description"></label>
     <input asp-for="ViewModel.Product.Description" />
+    @if (!@Model.ViewModel.DescriptionValid)
+    {
+        <p>@Model.ViewModel.DescriptionError</p>
+    }
     <br />
     <label asp-for="ViewModel.Product.Image"></label>
     <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
+    @if (!@Model.ViewModel.ImageValid)
+    {
+        <p>@Model.ViewModel.ImageError</p>
+    }
     <br />
     <label asp-for="ViewModel.Product.Price"></label>
     <input asp-for="ViewModel.Product.Price" />
+    @if (!@Model.ViewModel.PriceValid)
+    {
+        <p>@Model.ViewModel.PriceError</p>
+    }
     <br />
     <input type="submit" value="Create" />
     <br />
