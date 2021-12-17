@@ -3,9 +3,14 @@
 
 <h1>Update Category</h1>
 
-<form method="post" asp-action="Index">
+<form method="post" asp-area="Admin" asp-controller="Categories" asp-action="Update" >
+    <input asp-for="ViewModel.Category.Id" type="hidden" />
     <label asp-for="ViewModel.Category.Name"></label>
     <input asp-for="ViewModel.Category.Name" />
+    @if (!@Model.ViewModel.NameValid)
+    {
+        <p>@Model.ViewModel.NameError</p>
+    }
     <br />
     <input type="submit" value="Update" />
 </form>

@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace KouStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("[Area]/[Controller]/[Action]")]
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _db;
         public CategoriesController(AppDbContext db) { _db = db; }
-        
+
+        [Route("[Area]/[Controller]")]
+        [Route("[Area]/[Controller]/[Action]")]
         [HttpGet]
         public IActionResult Index() => 
             View(_db.AllCategories).ToAdminAuthAction(this);
 
+        [Route("[Area]/[Controller]/[Action]")]
         [HttpGet]
         public IActionResult Create() =>
             View(new FormModel<CategoryViewModel>()).ToAdminAuthAction(this);
@@ -28,31 +30,37 @@ namespace KouStore.Areas.Admin.Controllers
                                    RedirectToAction(nameof(Index)),
                                    CategoryManager.CreateFromViewModel,
                                    _db );
-
-        [HttpGet("{id}")]
-        public IActionResult Update(int id) =>
-            View(_db.GetCategoryById(id)).ToAdminAuthAction(this);
-
-        [HttpPost]
-        public IActionResult Update(FormModel<CategoryViewModel> formModel) =>
-            formModel.ProcessForm( this,
-                                   nameof(Update),
-                                   RedirectToAction(nameof(Index)),
-                                   CategoryManager.UpdateFromViewModel,
-                                   _db );
-
-        [HttpGet("{id}")]
-        public IActionResult Delete(int id) =>
-            RedirectToAction(nameof(Delete), new { category = _db.GetCategoryById(id) })
-            .ToAdminAuthAction(this);
-
-        [HttpPost]
-        public IActionResult Delete(CategoryModel category)
+        [Route("[Area]/[Controller]/[Action]/{id}")]
+        [HttpGet]
+        public IActionResult Update(int id)
         {
-            category.DeleteRecord(_db);
-            return RedirectToAction(nameof(Index));
+            CategoryModel? model = _db.GetCategoryById(id);
+            if (model == null) return RedirectToAction(nameof(Index));
+            CategoryViewModel viewModel = new CategoryViewModel { Category = model };
+            return View(new FormModel<CategoryViewModel> { ViewModel = viewModel }).ToAdminAuthAction(this);
         }
 
+        [Route("[Area]/[Controller]/[Action]/{formModel}")]
+        [HttpPost]
+        public IActionResult Update([FromForm] FormModel<CategoryViewModel> formModel) =>
+            formModel.ProcessForm( 
+                this,
+                nameof(Update),
+                RedirectToAction(nameof(Index)),
+                CategoryManager.UpdateFromViewModel,
+                _db );
 
+        [Route("[Area]/[Controller]/[Action]/{id}")]
+        [HttpGet]
+        public IActionResult Delete(int id) =>
+            RedirectToAction(nameof(Delete), new { model = _db.GetCategoryById(id)}).ToAdminAuthAction(this);
+
+        [HttpPost()]
+        public IActionResult Delete(CategoryModel? model)
+        {
+            
+            model?.DeleteRecord(_db);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

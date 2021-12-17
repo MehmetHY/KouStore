@@ -21,7 +21,9 @@ namespace KouStore.Managers
         }
         public static void UpdateRecord(this CategoryModel model, AppDbContext? db)
         {
-            db?.Categories.Update(model);
+            var query = db?.Categories.Where(c => c.Id == model.Id).FirstOrDefault();
+            if (query == null) return;
+            query.Name = model.Name;
             db?.SaveChanges();
         }
         public static void DeleteRecord(this CategoryModel model, AppDbContext db)
