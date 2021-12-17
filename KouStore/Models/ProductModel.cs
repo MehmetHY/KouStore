@@ -20,7 +20,8 @@ namespace KouStore.Models
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; } = decimal.Zero;
-    
+        public int CategoryId { get; set; }
+
         public string GetImageDataURL() => Image == null ? 
             string.Empty : 
             string.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(Image));

@@ -7,6 +7,8 @@ namespace KouStore.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public ProductModel Product { get; set; } = new();
+        public int ProductId { get; set; }
+        [Required]
+        public int CustomerId { get; set; }
     }
 }

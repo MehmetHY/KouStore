@@ -28,7 +28,7 @@ namespace KouStore.Areas.Admin.Controllers
             formModel.ProcessForm( this,
                                    nameof(Create),
                                    RedirectToAction(nameof(Index)),
-                                   CategoryManager.CreateFromViewModel,
+                                   CategoryDbManager.CreateFromViewModel,
                                    _db );
         [Route("[Area]/[Controller]/[Action]/{id}")]
         [HttpGet]
@@ -47,7 +47,7 @@ namespace KouStore.Areas.Admin.Controllers
                 this,
                 nameof(Update),
                 RedirectToAction(nameof(Index)),
-                CategoryManager.UpdateFromViewModel,
+                CategoryDbManager.UpdateFromViewModel,
                 _db );
 
         [Route("[Area]/[Controller]/[Action]/{id}")]

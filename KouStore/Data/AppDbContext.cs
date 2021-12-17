@@ -10,7 +10,6 @@ namespace KouStore.Data
         }
         public DbSet<AdminModel> Admins { get; set; }
         public DbSet<CartItemModel> CartItems { get; set; }
-        public DbSet<CartModel> Carts { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CustomerModel> Customers { get; set; }
@@ -27,8 +26,5 @@ namespace KouStore.Data
             name == null ? null : Admins.Where(a => a.Name == name).FirstOrDefault();
         public CategoryModel? GetCategoryByName(string? name) =>
             name == null ? null : Categories.Where(c => c.Name == name).FirstOrDefault();
-
-        public List<ProductModel> GetProductsOfCategory(int id)
-            => Categories.First(c => c.Id == id).Products.ToList();
     }
 }

@@ -4,16 +4,15 @@ using KouStore.Models;
 
 namespace KouStore.Managers
 {
-    public static class ProductManager
+    public static class ProductDbManager
     {
         public static void CreateFromViewModel(ProductViewModel model)
         {
-            model.Product.AddRecord(model.Category, model.DbContext);
+            model.Product.AddRecord(model.DbContext);
         }
-        public static void AddRecord(this ProductModel product, CategoryModel category, AppDbContext db)
+        public static void AddRecord(this ProductModel product, AppDbContext db)
         {
-            var queryCategory = db.Categories.First(c => c.Name == category.Name);
-            queryCategory.Products.Add(product);
+            db.Products.Add(product);
             db.SaveChanges();
         }
 
@@ -36,5 +35,20 @@ namespace KouStore.Managers
             db.Products.Remove(product);
             db.SaveChanges();
         }
+        
+        public static List<ProductModel> GetProductsInCart(this CustomerModel customer, AppDbContext db)
+        {
+            List<CartItemModel> cartItems = db.CartItems.Where(c => c.CustomerId == customer.Id).ToList();
+            List<ProductModel> products = new List<ProductModel>();
+            foreach (var cartItem in cartItems)
+            {
+                ProductModel product = db.Products.First(p => p.Id == cartItem.ProductId);
+                products.Add(product);
+            }
+            return products;
+        }
+
+        public static List<ProductModel> GetProductsInCategory(this CategoryModel category, AppDbContext db) =>
+            db.Products.Where(p => p.CategoryId == category.Id).ToList();
     }
 }

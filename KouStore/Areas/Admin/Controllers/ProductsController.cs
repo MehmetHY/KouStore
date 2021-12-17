@@ -39,7 +39,7 @@ namespace KouStore.Areas.Admin.Controllers
             => formModel.ProcessForm( this,
                                       nameof(Create),
                                       RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
-                                      ProductManager.CreateFromViewModel,
+                                      ProductDbManager.CreateFromViewModel,
                                       _db );
 
         [Route("[Area]/{categoryName}/[Controller]/[Action]/{id}")]
@@ -61,7 +61,7 @@ namespace KouStore.Areas.Admin.Controllers
             formModel.ProcessForm( this,
                                    nameof(Update),
                                    RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
-                                   ProductManager.UpdateFromViewModel,
+                                   ProductDbManager.UpdateFromViewModel,
                                    _db );
         
         [Route("[Area]/{categoryName}/[Controller]/[Action]/{id}")]
