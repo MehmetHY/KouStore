@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KouStore.Areas.Admin.Models
 {
-    public class ProductViewModel : IViewModel
+    public class ProductViewModel : IFormViewModel
     {
         public ProductModel Product { get; set; } = new();
         public CategoryModel Category { get; set; } = new();

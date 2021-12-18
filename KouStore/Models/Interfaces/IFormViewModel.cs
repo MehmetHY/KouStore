@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Models.Interfaces
 {
-    public interface IViewModel
+    public interface IFormViewModel
     {
         public AppDbContext? DbContext { get; set; }
         public void Setup(AppDbContext db, Controller controller);

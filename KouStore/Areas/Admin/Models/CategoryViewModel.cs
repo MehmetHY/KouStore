@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Areas.Admin.Models
 {
-    public class CategoryViewModel : IViewModel
+    public class CategoryViewModel : IFormViewModel
     {
         public CategoryModel Category { get; set; } = new();
         public bool NameValid { get; set; } = true;

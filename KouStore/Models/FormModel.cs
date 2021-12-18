@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Models
 {
-    public class FormModel<T> where T : IViewModel, new()
+    public class FormModel<T> where T : IFormViewModel, new()
     {
         public T ViewModel { get; set; } = new T();
         public Controller CurrentController { get; set; }
