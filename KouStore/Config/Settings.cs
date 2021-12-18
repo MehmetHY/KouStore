@@ -2,8 +2,9 @@
 {
     public static class Settings
     {
-        public static int MaxImageSizeInMB => 5;
-        public static int MaxImageSizeInBytes => MaxImageSizeInMB * 1000000;
+        public const int MaxImageSizeInMB = 5;
+        public const int MaxImageSizeInBytes = MaxImageSizeInMB * 1000000;
         public static string[] AllowedImageExtensions => new string[]{ ".jpg", ".JPG", ".jpeg", ".JPEG" };
+        public const int MaxModelSizePerPage = 20;
     }
 }
