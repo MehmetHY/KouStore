@@ -8,12 +8,7 @@ namespace KouStore.Managers
     {
         public static void CreateFromViewModel(ProductViewModel productViewModel)
         {
-            var category = CategoryDbManager.GetCategory(productViewModel.Category.Name, productViewModel.DbContext);
-            if (productViewModel.DbContext != null && category != null)
-            { 
-                productViewModel.Product.CategoryId = category.Id;
-                productViewModel.Product.AddRecord(productViewModel.DbContext);
-            }
+            productViewModel.Product.AddRecord(productViewModel.DbContext);
         }
         public static void AddRecord(this ProductModel? product, AppDbContext? db)
         {

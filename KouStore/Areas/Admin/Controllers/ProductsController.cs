@@ -34,6 +34,7 @@ namespace KouStore.Areas.Admin.Controllers
         }
         [Route("[Area]/{categoryName}/[Controller]/[Action]/{formModel}")]
         [HttpPost]
+        [RequestSizeLimit(100000000)]
         public IActionResult Create([FromForm] FormModel<ProductViewModel> formModel)
             => formModel.ProcessForm( this,
                                       nameof(Create),
@@ -56,6 +57,7 @@ namespace KouStore.Areas.Admin.Controllers
         }
         [Route("[Area]/[Controller]/[Action]/{formModel}")]
         [HttpPost]
+        [RequestSizeLimit(100000000)]
         public IActionResult Update([FromForm] FormModel<ProductViewModel> formModel) =>
             formModel.ProcessForm( this,
                                    nameof(Update),

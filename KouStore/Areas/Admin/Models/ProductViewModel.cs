@@ -78,23 +78,20 @@ namespace KouStore.Areas.Admin.Models
         }
         private void ValidateImage()
         {
-            if (!IsUploadImageValid() && Product.Image == null) return;
-            if (Product.Image != null)
+            if (DidTryToUpload() && IsUploadImageValid())
             {
-                ImageError = string.Empty;
-                ImageValid = true;
-                return;
+                Product.SetImageDataURL(ImageFile);
             }
-            Product.SetImageDataURL(ImageFile);
+            else if (!DidTryToUpload() && !IsCurrentImageExist())
+            {
+                ImageValid = false;
+                ImageError = "Image cannot be empty!";
+            }
         }
+        private bool DidTryToUpload() => ImageFile != null;
+        private bool IsCurrentImageExist() => Product.Image != null;
         private bool IsUploadImageValid()
         {
-            if (ImageFile == null)
-            {
-                ImageError = "Image cannot be empty!";
-                ImageValid = false;
-                return false;
-            }
             if (ImageFile.Length > Settings.MaxImageSizeInBytes)
             {
                 ImageError = $"Image size cannot be greater than {Settings.MaxImageSizeInMB}MB!";
