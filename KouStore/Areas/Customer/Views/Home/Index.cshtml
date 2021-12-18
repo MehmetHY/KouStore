@@ -1,5 +1,7 @@
 ﻿@model KouStore.Areas.Customer.Models.HomePageViewModel
-
+@{
+    ViewData["Title"] = "Home";
+}
 <h1>Home</h1>
 @foreach (var category in @Model.Categories)
 {

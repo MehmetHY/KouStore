@@ -1,3 +1,5 @@
 ﻿@model KouStore.Areas.Customer.Models.ProductPageViewModel
-
+@{
+    ViewData["Title"] = @Model.Product.Title;
+}
 <h1>@Model.Product.Title</h1>
