@@ -45,8 +45,8 @@ namespace KouStore.Managers
         public static List<ProductModel> GetProductsRange(AppDbContext? db, int start = 0, int count = Settings.MaxModelSizePerPage, bool descending = false) =>
             db == null ? new() :
                 descending ?
-                    db.Products.Skip(start).Take(count).ToList() :
-                    db.Products.OrderByDescending(p => p.Id).Skip(start).Take(count).ToList();
+                    db.Products.OrderByDescending(p => p.Id).Skip(start).Take(count).ToList() :
+                    db.Products.Skip(start).Take(count).ToList();
         public static int GetProductCount(AppDbContext? db) =>
             db == null ? 0 : db.Products.Count();
 
