@@ -3,7 +3,7 @@
 <h1>Home</h1>
 @foreach (var category in @Model.Categories)
 {
-    <a>@category.Name</a>
+    <a asp-area="Customer" asp-controller="Category" asp-action="Index" asp-route-categoryName="@category.Name">@category.Name</a>
     <br />
 }
 <br />

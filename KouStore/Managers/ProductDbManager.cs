@@ -47,8 +47,16 @@ namespace KouStore.Managers
                 descending ?
                     db.Products.OrderByDescending(p => p.Id).Skip(start).Take(count).ToList() :
                     db.Products.Skip(start).Take(count).ToList();
+        public static List<ProductModel> GetProductsRange(this CategoryModel? category, AppDbContext? db, int start = 0, int count = Settings.MaxModelSizePerPage, bool descending = false) =>
+            db == null || category == null ? new() :
+                descending ?
+                    db.Products.Where(p => p.CategoryId == category.Id).OrderByDescending(p => p.Id).Skip(start).Take(count).ToList() :
+                    db.Products.Where(p => p.CategoryId == category.Id).Skip(start).Take(count).ToList();
         public static int GetProductCount(AppDbContext? db) =>
             db == null ? 0 : db.Products.Count();
+        public static int GetProductCount(this CategoryModel category, AppDbContext? db) =>
+            category == null || db == null ? 
+            0 : db.Products.Where(p => p.CategoryId == category.Id).Count();
 
         public static void UpdateFromViewModel(ProductViewModel productViewModel)
         {
