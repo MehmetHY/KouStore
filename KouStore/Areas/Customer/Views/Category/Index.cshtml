@@ -4,6 +4,6 @@
 
 @foreach (var product in @Model.QueryModels)
 {
-    <a>@product.Title</a>
+    <a asp-area="Customer" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Title</a>
     <br />
 }
