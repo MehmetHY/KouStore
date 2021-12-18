@@ -8,6 +8,10 @@
 <body>
     <header>
         <a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+        <form method="get" asp-area="Customer" asp-controller="Search" asp-action="Index">
+            <input name="searchString" type="text" />
+            <input type="submit" value="Search" />
+        </form>
     </header>
     <main role="main" class="pb-3">
         @RenderBody()
