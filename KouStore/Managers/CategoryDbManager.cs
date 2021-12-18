@@ -27,6 +27,8 @@ namespace KouStore.Managers
         public static CategoryModel? GetCategory(this ProductModel? product, AppDbContext? db) =>
             product == null || db == null ? 
             null : db.Categories.FirstOrDefault(c => c.Id == product.CategoryId);
+        public static List<CategoryModel> GetallCategories(AppDbContext? db) =>
+            db == null ? new() : db.Categories.ToList();
 
         public static void UpdateFromViewModel(CategoryViewModel categoryViewModel)
         {

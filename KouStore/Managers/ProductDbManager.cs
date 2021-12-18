@@ -1,6 +1,7 @@
 ﻿using KouStore.Areas.Admin.Models;
 using KouStore.Data;
 using KouStore.Models;
+using KouStore.Config;
 
 namespace KouStore.Managers
 {
@@ -41,6 +42,13 @@ namespace KouStore.Managers
             if (category == null || db == null) return;
             category.Products = category.GetProducts(db);
         }
+        public static List<ProductModel> GetProductsRange(AppDbContext? db, int start = 0, int count = Settings.MaxModelSizePerPage, bool descending = false) =>
+            db == null ? new() :
+                descending ?
+                    db.Products.Skip(start).Take(count).ToList() :
+                    db.Products.OrderByDescending(p => p.Id).Skip(start).Take(count).ToList();
+        public static int GetProductCount(AppDbContext? db) =>
+            db == null ? 0 : db.Products.Count();
 
         public static void UpdateFromViewModel(ProductViewModel productViewModel)
         {
