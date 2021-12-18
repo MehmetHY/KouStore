@@ -61,7 +61,7 @@ namespace KouStore.Areas.Admin.Controllers
         public IActionResult Update([FromForm] FormModel<ProductViewModel> formModel) =>
             formModel.ProcessForm( this,
                                    nameof(Update),
-                                   RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category?.Name ?? string.Empty }),
+                                   RedirectToAction(nameof(Index), new { categoryName = formModel.ViewModel.Category.Name }),
                                    ProductDbManager.UpdateFromViewModel,
                                    _db );
         

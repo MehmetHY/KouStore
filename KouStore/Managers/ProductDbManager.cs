@@ -44,8 +44,7 @@ namespace KouStore.Managers
 
         public static void UpdateFromViewModel(ProductViewModel productViewModel)
         {
-            if (productViewModel.DbContext != null)
-                productViewModel.Product.UpdateRecord(productViewModel.DbContext);
+            productViewModel.Product.UpdateRecord(productViewModel.DbContext);
         }
         public static void UpdateRecord(this ProductModel? product, AppDbContext? db)
         {

@@ -3,9 +3,11 @@
 <h1>@Model.ViewModel.Category.Name</h1>
 <h3>Update Product</h3>
 
-<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Update">
+<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Update" asp-route-formModel="@Model">
     <input asp-for="ViewModel.Category.Name" type="hidden" />
     <input asp-for="ViewModel.Product.Id" type="hidden" />
+    <input asp-for="ViewModel.Product.CategoryId" type="hidden" />
+    <input asp-for="ViewModel.Product.Image" type="hidden" />
     <label asp-for="ViewModel.Product.Title"></label>
     <input asp-for="ViewModel.Product.Title" />
     <br />
