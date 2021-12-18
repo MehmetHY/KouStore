@@ -1,0 +1,9 @@
+﻿@model KouStore.Areas.Customer.Models.CategoryPageViewModel
+
+<h1>@Model.Category.Name</h1>
+
+@foreach (var product in @Model.QueryModels)
+{
+    <a>@product.Title</a>
+    <br />
+}
