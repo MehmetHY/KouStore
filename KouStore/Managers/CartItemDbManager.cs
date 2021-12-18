@@ -63,5 +63,11 @@ namespace KouStore.Managers
             db.CartItems.RemoveRange(query);
             db.SaveChanges();
         }
+
+        public static bool HasProduct(this CustomerModel? customer, int productId, AppDbContext? db)
+        {
+            if (customer == null || db == null) return false;
+            return db.CartItems.Any(c => c.CustomerId == customer.Id && c.ProductId == productId);
+        }
     }
 }

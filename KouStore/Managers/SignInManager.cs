@@ -1,4 +1,6 @@
 ﻿using KouStore.Areas.Admin.Models;
+using KouStore.Data;
+using KouStore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KouStore.Managers
@@ -6,6 +8,7 @@ namespace KouStore.Managers
     public static class SignInManager
     {
         public const string ADMIN_ID_KEY = "AdminId";
+        public const string CUSTOMER_ID_KEY = "CustomerId";
 
         public static bool IsAdminSignedIn(this Controller controller) => 
             controller.HttpContext.Session.GetString(ADMIN_ID_KEY) != null;
@@ -25,5 +28,29 @@ namespace KouStore.Managers
             IsAdminSignedIn(controller) ? 
                 action : 
                 controller.RedirectToAction("Index", "SignIn", new { Area = "Admin" });
+
+        public static bool IsCustomerSignedIn(this Controller controller) =>
+            controller.HttpContext.Session.GetString(CUSTOMER_ID_KEY) != null;
+
+        public static void SignInCustomer(this Controller controller, CustomerModel? customer)
+        {
+            if (customer == null) return;
+            controller.HttpContext.Session.SetString(CUSTOMER_ID_KEY, customer.Id.ToString());
+        }
+
+        public static void LogOutCustomer(this Controller controller)
+        {
+            if (IsCustomerSignedIn(controller))
+                controller.HttpContext.Session.Remove(CUSTOMER_ID_KEY);
+        }
+
+        public static CustomerModel? GetCurrentCustomer(this Controller controller, AppDbContext? db)
+        {
+            if (db == null) return null;
+            string? idString = controller.HttpContext.Session.GetString(CUSTOMER_ID_KEY);
+            int id;
+            if (!int.TryParse(idString, out id)) return null;
+            return CustomerDbManager.GetCustomer(id, db);
+        }
     }
 }
