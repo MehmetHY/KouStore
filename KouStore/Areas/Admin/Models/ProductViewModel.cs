@@ -10,7 +10,7 @@ namespace KouStore.Areas.Admin.Models
     public class ProductViewModel : IViewModel
     {
         public ProductModel Product { get; set; } = new();
-        public CategoryModel? Category { get; set; }
+        public CategoryModel Category { get; set; } = new();
         [DataType(DataType.Upload)]
         public IFormFile? ImageFile { get; set; }
         public bool TitleValid { get; set; } = true;

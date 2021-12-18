@@ -3,7 +3,7 @@
 <h1>@Model.ViewModel.Category.Name</h1>
 <h3>Create Product</h3>
 
-<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-categoryName="@Model.ViewModel.Category.Name" asp-route-formModel="@Model">
+<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-formModel="@Model">
     <input asp-for="ViewModel.Category.Name" type="hidden" />
     <label asp-for="ViewModel.Product.Title"></label>
     <input asp-for="ViewModel.Product.Title" />
