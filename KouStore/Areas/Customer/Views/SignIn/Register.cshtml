@@ -1,0 +1,17 @@
+﻿@model FormModel<RegisterViewModel>
+@ViewData["Title"] = "Register"
+
+<h1>Register</h1>
+
+<form method="post" asp-area="Customer" asp-controller="SignIn" asp-action="Register" asp-route-formModel=@Model>
+    <label asp-for="ViewModel.Customer.Name"></label>
+    <input asp-for="ViewModel.Customer.Name" />
+    <br />
+    <label asp-for="ViewModel.Customer.Password"></label>
+    <input asp-for="ViewModel.Customer.Password" />
+    <br />
+    <label asp-for="ViewModel.ConfirmPassword"></label>
+    <input asp-for="ViewModel.ConfirmPassword" />
+    <br />
+    <input type="submit" value="Register" />
+</form>

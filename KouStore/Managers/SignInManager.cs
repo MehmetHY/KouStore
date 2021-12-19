@@ -13,18 +13,15 @@ namespace KouStore.Managers
 
         public static bool IsAdminSignedIn(this Controller controller) => 
             controller.HttpContext.Session.GetString(ADMIN_ID_KEY) != null;
-
         public static void SignInAdmin(AdminViewModel model)
         {
             model.Session?.SetString(ADMIN_ID_KEY, model.Admin.Id.ToString());
         }
-
         public static void LogOutAdmin(this Controller controller)
         {
             if (IsAdminSignedIn(controller))
                 controller.HttpContext.Session.Remove(ADMIN_ID_KEY);
         }
-
         public static IActionResult ToAdminAuthAction(this IActionResult action, Controller controller) => 
             IsAdminSignedIn(controller) ? 
                 action : 
@@ -32,7 +29,6 @@ namespace KouStore.Managers
 
         public static bool IsCustomerSignedIn(this Controller controller) =>
             controller.HttpContext.Session.GetString(CUSTOMER_ID_KEY) != null;
-
         public static void SignInCustomer(this Controller controller, CustomerModel? customer)
         {
             if (customer == null) return;
@@ -42,13 +38,11 @@ namespace KouStore.Managers
         {
             SignInCustomer(signInViewModel.CurrentController!, signInViewModel.Customer);
         }
-
         public static void LogOutCustomer(this Controller controller)
         {
             if (IsCustomerSignedIn(controller))
                 controller.HttpContext.Session.Remove(CUSTOMER_ID_KEY);
         }
-
         public static CustomerModel? GetCurrentCustomer(this Controller controller, AppDbContext? db)
         {
             if (db == null) return null;

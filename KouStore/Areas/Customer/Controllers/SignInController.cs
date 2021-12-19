@@ -31,8 +31,38 @@ namespace KouStore.Areas.Customer.Controllers
         public IActionResult Index([FromForm] FormModel<SignInViewModel> formModel) =>
             formModel.ProcessForm( this,
                                    nameof(Index),
-                                   formModel.TargetActionResult,
+                                   formModel.TargetActionResult!,
                                    SignInManager.SignInCustomer,
+                                   _db );
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Register() =>
+            View
+            (
+                new FormModel<RegisterViewModel>
+                { 
+                    TargetActionResult = RedirectToAction("Index", "Home") 
+                }
+            );
+
+        [Route("[Action]")]
+        [HttpPost]
+        public IActionResult Register([FromRoute(Name = "targetAction")] IActionResult targetAction) =>
+            View
+            (
+                new FormModel<RegisterViewModel>
+                { 
+                    TargetActionResult = targetAction
+                }
+            );
+        
+        [HttpPost]
+        public IActionResult Register([FromForm] FormModel<RegisterViewModel> formModel) =>
+            formModel.ProcessForm( this,
+                                   nameof(Register),
+                                   formModel.TargetActionResult!,
+                                   CustomerDbManager.CreateFromViewModel,
                                    _db );
     }
 }

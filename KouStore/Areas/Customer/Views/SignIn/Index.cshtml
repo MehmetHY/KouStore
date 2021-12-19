@@ -3,7 +3,7 @@
 
 <h1>Sign in</h1>
 
-<form method="post" asp-area="Customer" asp-controller="SignIn" asp-action="Index">
+<form method="post" asp-area="Customer" asp-controller="SignIn" asp-action="Index" asp-route-formModel=@Model>
     <label asp-for="ViewModel.Customer.Name"></label>
     <input asp-for="ViewModel.Customer.Name" />
     <br />
