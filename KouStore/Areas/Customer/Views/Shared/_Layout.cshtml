@@ -9,9 +9,20 @@
     <header>
         <a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
         <form method="get" asp-area="Customer" asp-controller="Search" asp-action="Index">
-            <input name="search" type="text" />
-            <input type="submit" value="Search" />
+            <span>
+                <input name="search" type="text" />
+                <input type="submit" value="Search" />
+            </span>
         </form>
+        @if (@Context.Session.IsCustomerSignedIn())
+        {
+            <a>Cart</a>
+            <a>Logout</a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-controller="SignIn" asp-area="Customer">Sign in</a>
+        }
     </header>
     <main role="main" class="pb-3">
         @RenderBody()

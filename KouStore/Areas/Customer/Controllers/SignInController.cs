@@ -16,9 +16,8 @@ namespace KouStore.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var homePage = RedirectToAction("Index", "Home");
-            return this.IsCustomerSignedIn() ? homePage : 
-                View(new FormModel<SignInViewModel>{ TargetActionResult = homePage });
+            return this.IsCustomerSignedIn() ? RedirectToAction("Index", "Home") : 
+                View(new FormModel<SignInViewModel>());
         }
         
         [Route("[Controller]/[Action]/{controllerName}/{actionName}/{id}")]
@@ -31,11 +30,14 @@ namespace KouStore.Areas.Customer.Controllers
             return View(new FormModel<SignInViewModel>());
         }
 
-        [Route("[Controller]/[Action]/{tController}/{tAction}/{tId}")]
+        [Route("[Controller]")]
+        [Route("[Controller]/{tController}/{tAction}/{tId}")]
         [HttpPost]
-        public IActionResult ValidateSignIn([FromForm] FormModel<SignInViewModel> formModel, [FromRoute] string tController, [FromRoute] string tAction, [FromRoute] int tId)
+        public IActionResult ValidateSignIn([FromForm] FormModel<SignInViewModel> formModel, [FromRoute] string? tController, [FromRoute] string? tAction, [FromRoute] int? tId)
         {
-            var target = RedirectToAction(tAction, tController, new { id = tId });
+            IActionResult target = tController == null || tAction == null || tId == null ?
+                RedirectToAction("Index", "Home") :
+                RedirectToAction(tAction, tController, new { id = tId });
             return formModel.ProcessForm( this,
                                    nameof(Index),
                                    target,

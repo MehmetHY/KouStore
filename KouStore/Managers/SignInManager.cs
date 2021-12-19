@@ -28,7 +28,9 @@ namespace KouStore.Managers
                 controller.RedirectToAction("Index", "SignIn", new { Area = "Admin" });
 
         public static bool IsCustomerSignedIn(this Controller controller) =>
-            controller.HttpContext.Session.GetString(CUSTOMER_ID_KEY) != null;
+            controller.HttpContext.Session.IsCustomerSignedIn();
+        public static bool IsCustomerSignedIn(this ISession session) =>
+            session.GetString(CUSTOMER_ID_KEY) != null;
         public static void SignInCustomer(this Controller controller, CustomerModel? customer)
         {
             if (customer == null) return;
