@@ -92,7 +92,7 @@ namespace KouStore.Areas.Admin.Models
         private bool IsCurrentImageExist() => Product.Image != null;
         private bool IsUploadImageValid()
         {
-            if (ImageFile.Length > Settings.MaxImageSizeInBytes)
+            if (ImageFile!.Length > Settings.MaxImageSizeInBytes)
             {
                 ImageError = $"Image size cannot be greater than {Settings.MaxImageSizeInMB}MB!";
                 ImageValid = false;

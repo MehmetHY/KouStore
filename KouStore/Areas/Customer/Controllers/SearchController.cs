@@ -11,9 +11,9 @@ namespace KouStore.Areas.Customer.Controllers
         private readonly AppDbContext _db;
         public SearchController(AppDbContext db) { _db = db; }
 
-        [Route("[Controller]/{searchString}")]
+        [Route("[Controller]")]
         [HttpGet]
-        public IActionResult Index(string? searchString)
+        public IActionResult Index([FromQuery(Name = "search")] string? searchString)
         {
             return View(new SearchPageViewModel(searchString, _db));
         }

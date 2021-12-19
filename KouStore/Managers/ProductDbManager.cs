@@ -68,10 +68,10 @@ namespace KouStore.Managers
             }
             var query = db.Products.Where(
                 p => 
-                    p.Title.Contains(model.SearchString, StringComparison.OrdinalIgnoreCase) ||
-                    p.Description.Contains(model.SearchString, StringComparison.OrdinalIgnoreCase) ||
-                    model.SearchString.Contains(p.Title, StringComparison.OrdinalIgnoreCase) ||
-                    model.SearchString.Contains(p.Description, StringComparison.OrdinalIgnoreCase)
+                    p.Title.Contains(model.SearchString) ||
+                    p.Description.Contains(model.SearchString) ||
+                    model.SearchString.Contains(p.Title) ||
+                    model.SearchString.Contains(p.Description)
                 );
             model.QueryModels = query.Skip((model.CurrentPage - 1) * model.MaxModelSizePerPage).Take(model.MaxModelSizePerPage).ToList();
             model.TotalModelCount = query.Count();
