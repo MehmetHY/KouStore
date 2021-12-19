@@ -1,4 +1,4 @@
-﻿@model KouStore.Areas.Customer.Models.ProductPageViewModel
+﻿@model ProductPageViewModel
 @{
     ViewData["Title"] = @Model!.Product.Title;
 }
@@ -7,11 +7,7 @@
 {
     <a>Go to Cart</a>
 }
-else if (@Model.Customer != null)
-{
-    <a asp-area="Customer" asp-controller="Product" asp-action="AddToCart" asp-route-productId="@Model.Product.Id">Add to Cart</a>
-}
 else
 {
-    <a>Sign in to buy</a>
+    <a asp-action="AddToCart" asp-route-id="@Model.Product.Id">Add to Cart</a>
 }

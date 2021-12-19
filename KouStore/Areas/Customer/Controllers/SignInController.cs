@@ -21,47 +21,37 @@ namespace KouStore.Areas.Customer.Controllers
                 View(new FormModel<SignInViewModel>{ TargetActionResult = homePage });
         }
         
-        [Route("[Controller]")]
-        [HttpPost]
-        public IActionResult Index([FromRoute(Name = "targetAction")] IActionResult targetAction) =>
-            this.IsCustomerSignedIn() ? targetAction : 
-                View(new FormModel<SignInViewModel>{ TargetActionResult = targetAction });
+        [Route("[Controller]/[Action]/{controllerName}/{actionName}/{id}")]
+        [HttpGet]
+        public IActionResult Index([FromRoute(Name = "controllerName")] string controllerName, [FromRoute(Name = "actionName")] string actionName, [FromRoute(Name = "id")] int id)
+        {
+            ViewBag.LastAction = actionName;
+            ViewBag.LastController = controllerName;
+            ViewBag.LastId = id;
+            return View(new FormModel<SignInViewModel>());
+        }
 
+        [Route("[Controller]/[Action]/{tController}/{tAction}/{tId}")]
         [HttpPost]
-        public IActionResult Index([FromForm] FormModel<SignInViewModel> formModel) =>
-            formModel.ProcessForm( this,
+        public IActionResult ValidateSignIn([FromForm] FormModel<SignInViewModel> formModel, [FromRoute] string tController, [FromRoute] string tAction, [FromRoute] int tId)
+        {
+            var target = RedirectToAction(tAction, tController, new { id = tId });
+            return formModel.ProcessForm( this,
                                    nameof(Index),
-                                   formModel.TargetActionResult!,
+                                   target,
                                    SignInManager.SignInCustomer,
                                    _db );
+        }
 
         [Route("[Action]")]
         [HttpGet]
-        public IActionResult Register() =>
-            View
-            (
-                new FormModel<RegisterViewModel>
-                { 
-                    TargetActionResult = RedirectToAction("Index", "Home") 
-                }
-            );
-
-        [Route("[Action]")]
-        [HttpPost]
-        public IActionResult Register([FromRoute(Name = "targetAction")] IActionResult targetAction) =>
-            View
-            (
-                new FormModel<RegisterViewModel>
-                { 
-                    TargetActionResult = targetAction
-                }
-            );
+        public IActionResult Register() => View(new FormModel<RegisterViewModel>());
         
         [HttpPost]
-        public IActionResult Register([FromForm] FormModel<RegisterViewModel> formModel) =>
+        public IActionResult ValidateRegister(FormModel<RegisterViewModel> formModel) =>
             formModel.ProcessForm( this,
                                    nameof(Register),
-                                   formModel.TargetActionResult!,
+                                   RedirectToAction("Index", "Home"),
                                    CustomerDbManager.CreateFromViewModel,
                                    _db );
     }

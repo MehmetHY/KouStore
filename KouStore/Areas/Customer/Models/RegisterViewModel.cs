@@ -23,7 +23,7 @@ namespace KouStore.Areas.Customer.Models
         public string PasswordError { get; set; } = string.Empty;
         public string ConfirmPasswordError { get; set; } = string.Empty;
         public AppDbContext? DbContext { get; set; }
-        public bool Result => NameValid && PasswordValid;
+        public bool Result => NameValid && PasswordValid && ConfirmPasswordValid;
 
         public void Setup(AppDbContext db, Controller controller) 
         {
@@ -39,9 +39,9 @@ namespace KouStore.Areas.Customer.Models
         }
         private void TrimWhiteSpaceFromFields()
         {
-            Customer.Name = Customer.Name.Trim();
-            Customer.Password = Customer.Password.Trim();
-            ConfirmPassword = ConfirmPassword.Trim();
+            Customer.Name = Customer.Name?.Trim() ?? string.Empty;
+            Customer.Password = Customer.Password?.Trim() ?? string.Empty;
+            ConfirmPassword = ConfirmPassword?.Trim() ?? string.Empty;
         }
         private bool IsThereAnyEmptyField()
         {

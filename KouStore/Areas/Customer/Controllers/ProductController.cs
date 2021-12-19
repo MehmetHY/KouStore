@@ -21,14 +21,14 @@ namespace KouStore.Areas.Customer.Controllers
             return View(new ProductPageViewModel(product, customer, customer.HasProduct(product.Id, _db)));
         }
 
-        [HttpPost]
-        public IActionResult AddToCart([FromRoute(Name = "productId")] int id)
+        [Route("[Controller]/[Action]/{id}")]
+        [HttpGet]
+        public IActionResult AddToCart(int id)
         {
             var customer = this.GetCurrentCustomer(_db);
             if (customer == null)
             {
-                // todo: redirect to sign in page with action result
-                return RedirectToAction(nameof(Index), new { id = id });
+                return RedirectToAction("Index", "SignIn", new { controllerName = "Product", actionName = nameof(AddToCart), id = id});
             }
             customer.AddToCart(id, _db);
             return RedirectToAction(nameof(Index), new { id = id });

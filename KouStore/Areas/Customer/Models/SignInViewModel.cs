@@ -31,8 +31,8 @@ namespace KouStore.Areas.Customer.Models
         }
         private void TrimWhiteSpaceFromFields()
         {
-            Customer.Name = Customer.Name.Trim();
-            Customer.Password = Customer.Password.Trim();
+            Customer.Name = Customer.Name?.Trim() ?? string.Empty;
+            Customer.Password = Customer.Password?.Trim() ?? string.Empty;
         }
         private bool IsThereAnyEmptyField()
         {
