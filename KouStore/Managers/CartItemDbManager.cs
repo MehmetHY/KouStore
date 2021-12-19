@@ -7,9 +7,15 @@ namespace KouStore.Managers
     {
         public static void AddRecord(this CartItemModel? cartItem, AppDbContext? db)
         {
-            if (cartItem == null || db == null) return;
+            if (cartItem == null || db == null || cartItem.CustomerId == 0 || cartItem.ProductId == 0) return;
             db.CartItems.Add(cartItem);
             db.SaveChanges();
+        }
+        public static void AddToCart(this CustomerModel? customer, int id, AppDbContext? db)
+        {
+            if (customer == null || db == null || id == 0) return;
+            var cartItem = new CartItemModel() { CustomerId = customer.Id, ProductId = id };
+            cartItem.AddRecord(db);
         }
 
         public static CartItemModel? GetCartItem(int? id, AppDbContext? db) =>
