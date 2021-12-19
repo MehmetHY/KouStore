@@ -7,11 +7,11 @@ namespace KouStore.Models
     public class FormModel<T> where T : IFormViewModel, new()
     {
         public T ViewModel { get; set; } = new T();
-        public Controller CurrentController { get; set; }
+        public Controller? CurrentController { get; set; }
         public string ViewName { get; set; } = string.Empty;
-        public IActionResult TargetActionResult { get; set; }
+        public IActionResult? TargetActionResult { get; set; }
         public delegate void ViewModelAction(T model);
-        public ViewModelAction SuccessAction { get; set; }
+        public ViewModelAction? SuccessAction { get; set; }
         public FormModel()
         {
 
@@ -25,10 +25,10 @@ namespace KouStore.Models
             Setup(controller, viewName, targetAction, onSuccess, db);
             if (IsFormValid())
             {
-                SuccessAction(ViewModel);
-                return TargetActionResult;
+                SuccessAction!(ViewModel);
+                return TargetActionResult!;
             }
-            return CurrentController.View(ViewName, this);
+            return CurrentController!.View(ViewName, this);
         }
         private void Setup(Controller controller, string viewName, IActionResult targetAction, ViewModelAction onSuccess, AppDbContext db)
         {

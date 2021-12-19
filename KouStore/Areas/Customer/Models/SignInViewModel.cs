@@ -9,6 +9,7 @@ namespace KouStore.Areas.Customer.Models
     public class SignInViewModel : IFormViewModel
     {
         public CustomerModel Customer { get; set; } = new();
+        public Controller? CurrentController { get; set; }
         public bool NameValid { get; set; } = true;
         public bool PasswordValid { get; set; } = true;
         public string NameError { get; set; } = string.Empty;
@@ -16,7 +17,11 @@ namespace KouStore.Areas.Customer.Models
         public AppDbContext? DbContext { get; set; }
         public bool Result => NameValid &&  PasswordValid;
 
-        public void Setup(AppDbContext db, Controller _) { DbContext = db; }
+        public void Setup(AppDbContext db, Controller currentController) 
+        {
+            DbContext = db; 
+            CurrentController = currentController;
+        }
 
         public void ValidateViewModel()
         {

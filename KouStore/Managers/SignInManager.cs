@@ -1,4 +1,5 @@
 ﻿using KouStore.Areas.Admin.Models;
+using KouStore.Areas.Customer.Models;
 using KouStore.Data;
 using KouStore.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,10 @@ namespace KouStore.Managers
         {
             if (customer == null) return;
             controller.HttpContext.Session.SetString(CUSTOMER_ID_KEY, customer.Id.ToString());
+        }
+        public static void SignInCustomer(SignInViewModel signInViewModel)
+        {
+            SignInCustomer(signInViewModel.CurrentController!, signInViewModel.Customer);
         }
 
         public static void LogOutCustomer(this Controller controller)

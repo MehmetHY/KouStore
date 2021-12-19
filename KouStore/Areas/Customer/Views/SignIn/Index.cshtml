@@ -1,0 +1,15 @@
+﻿@model FormModel<SignInViewModel>
+@ViewData["Title"] = "Sign in"
+
+<h1>Sign in</h1>
+
+<form method="post" asp-area="Customer" asp-controller="SignIn" asp-action="Index">
+    <label asp-for="ViewModel.Customer.Name"></label>
+    <input asp-for="ViewModel.Customer.Name" />
+    <br />
+    <label asp-for="ViewModel.Customer.Password"></label>
+    <input asp-for="ViewModel.Customer.Password" />
+    <br />
+    <input type="submit" value="Sign in" />
+</form>
+<a asp-area="Customer" asp-controller="SignIn" asp-action="Register">Register</a>
