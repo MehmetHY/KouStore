@@ -1,7 +1,6 @@
 ﻿using KouStore.Data;
 using KouStore.Areas.Customer.Models;
 using KouStore.Models;
-using KouStore.Managers;
 
 namespace KouStore.Managers
 {
