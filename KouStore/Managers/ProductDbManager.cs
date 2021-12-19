@@ -75,6 +75,8 @@ namespace KouStore.Managers
                 );
             model.QueryModels = query.Skip((model.CurrentPage - 1) * model.MaxModelSizePerPage).Take(model.MaxModelSizePerPage).ToList();
             model.TotalModelCount = query.Count();
+            if (model.TotalModelCount < 1) model.Message = "No result found!";
+            else model.Message = $"Results for \"{model.SearchString}\"";
         }
         public static int GetProductCount(AppDbContext? db) =>
             db == null ? 0 : db.Products.Count();

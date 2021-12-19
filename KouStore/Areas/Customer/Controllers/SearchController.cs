@@ -15,7 +15,7 @@ namespace KouStore.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult Index([FromQuery(Name = "search")] string? searchString)
         {
-            return View(new SearchPageViewModel(searchString, _db));
+            return View(new SearchPageViewModel(searchString?.Trim(), _db));
         }
     }
 }
