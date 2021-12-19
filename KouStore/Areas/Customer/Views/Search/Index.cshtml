@@ -1,0 +1,13 @@
+﻿@model KouStore.Areas.Customer.Models.SearchPageViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+<p>@Model.Message</p>
+
+@foreach (var product in @Model.QueryModels)
+{
+    <a asp-area="Customer" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Title</a>
+    <br />
+}
