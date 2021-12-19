@@ -1,4 +1,5 @@
 ﻿using KouStore.Areas.Admin.Models;
+using KouStore.Areas.Customer.Models;
 using KouStore.Data;
 using KouStore.Models;
 using KouStore.Config;
@@ -52,6 +53,29 @@ namespace KouStore.Managers
                 descending ?
                     db.Products.Where(p => p.CategoryId == category.Id).OrderByDescending(p => p.Id).Skip(start).Take(count).ToList() :
                     db.Products.Where(p => p.CategoryId == category.Id).Skip(start).Take(count).ToList();
+        public static void LoadSearchProducts(this SearchPageViewModel? model, AppDbContext? db)
+        {
+            if (model == null) return;
+            if (db == null)
+            {
+                model.Message = "Couldn't connect to database!";
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(model.SearchString))
+            {
+                model.Message = "Search field is empty!";
+                return;
+            }
+            var query = db.Products.Where(
+                p => 
+                    p.Title.Contains(model.SearchString, StringComparison.OrdinalIgnoreCase) ||
+                    p.Description.Contains(model.SearchString, StringComparison.OrdinalIgnoreCase) ||
+                    model.SearchString.Contains(p.Title, StringComparison.OrdinalIgnoreCase) ||
+                    model.SearchString.Contains(p.Description, StringComparison.OrdinalIgnoreCase)
+                );
+            model.QueryModels = query.Skip((model.CurrentPage - 1) * model.MaxModelSizePerPage).Take(model.MaxModelSizePerPage).ToList();
+            model.TotalModelCount = query.Count();
+        }
         public static int GetProductCount(AppDbContext? db) =>
             db == null ? 0 : db.Products.Count();
         public static int GetProductCount(this CategoryModel category, AppDbContext? db) =>
