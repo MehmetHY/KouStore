@@ -1,18 +1,16 @@
 ﻿@model CartViewModel
-@{ViewData["Title"] = "Cart";}
+@{ViewData["Title"] = "Checkout";}
 
-<h1>Cart</h1>
+<h1>Checkout</h1>
 
 @foreach (var product in @Model!.Products)
 {
     <span>@product.Title</span>
-    <span>@product.Price</span>
-    <a>Remove</a>
     <br />
 }
 <h3>Total price: @Model.TotalPrice</h3>
 
-<form method="post" asp-action="Checkout">
+<form method="post" asp-action="Payment">
     <input type="hidden" asp-for="@Model"/>
-    <input type="submit" value="Checkout"/>
+    <input type="submit" value="Payment"/>
 </form>
