@@ -56,5 +56,14 @@ namespace KouStore.Areas.Customer.Controllers
                                    RedirectToAction("Index", "Home"),
                                    CustomerDbManager.CreateFromViewModel,
                                    _db );
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            if (this.IsCustomerSignedIn())
+                this.LogOutCustomer();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

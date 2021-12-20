@@ -19,8 +19,8 @@
         }
         @if (@customerId != 0)
         {
-            <a asp-action="Index" asp-controller="Cart" asp-route-id="@customerId">Go to Cart</a>
-            <a>Logout</a>
+            <a asp-action="Index" asp-controller="Cart" asp-route-id="@customerId">Cart</a>
+            <a asp-action="Logout" asp-controller="SignIn" asp-area="Customer">Logout</a>
         }
         else
         {

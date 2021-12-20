@@ -43,5 +43,19 @@ namespace KouStore.Areas.Customer.Controllers
             cartModel.Products = cartModel.Customer.GetProducts(_db);
             return View(cartModel);
         }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Remove([FromQuery] int id)
+        {
+            var product = ProductDbManager.GetProduct(id, _db);
+            if (product == null) 
+                return RedirectToAction("Index", "Home");
+            var customer = this.GetCurrentCustomer(_db);
+            if (customer == null)
+                return RedirectToAction("Index", "SignIn", new { controllerName = "Cart", actionName = nameof(Remove), id = id });
+            customer.DeleteCartItem(id, _db);
+            return RedirectToAction(nameof(Index), new { id });
+        }
     }
 }
