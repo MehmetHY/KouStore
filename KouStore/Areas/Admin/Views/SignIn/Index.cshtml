@@ -1,21 +1,31 @@
 ﻿@using KouStore.Areas.Admin.Models
 @model KouStore.Models.FormModel<AdminViewModel>
 
-<h1>Admin Sign in</h1>
-<form method="post" asp-action="Index">
-    <label asp-for="ViewModel.Admin.Name"></label>
-    <input asp-for=ViewModel.Admin.Name />
-    @if (!@Model.ViewModel.NameValid)
-    {
-        <p>@Model.ViewModel.NameErrorMessage</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Admin.Password"></label>
-    <input asp-for="ViewModel.Admin.Password" />
-    @if (!@Model.ViewModel.PasswordValid)
-    {
-        <p>@Model.ViewModel.PasswordErrorMessage</p>
-    }
-    <br />
-    <input type="submit" />
-</form>
+<div class="form">
+    <h1>Admin Sign in</h1>
+    <form method="post" asp-action="Index">
+        <div class="inputs">
+            <div class="label-input">
+                <label asp-for="ViewModel.Admin.Name"></label>
+                <input asp-for=ViewModel.Admin.Name />
+                @if (!@Model!.ViewModel.NameValid)
+                {
+                    <span class="input-error">@Model.ViewModel.NameErrorMessage</span>
+                }
+            </div>
+            <div class="label-input">
+                <label asp-for="ViewModel.Admin.Password"></label>
+                <input asp-for="ViewModel.Admin.Password" />
+                @if (!@Model.ViewModel.PasswordValid)
+                {
+                    <span class="input-error">@Model.ViewModel.PasswordErrorMessage</span>
+                }
+            </div>
+        </div>
+        <div class="button-container">
+            <input type="submit" value="Sign in" class="button" />
+        </div>
+    </form>
+
+</div>
+
