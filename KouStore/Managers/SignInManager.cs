@@ -11,8 +11,10 @@ namespace KouStore.Managers
         public const string ADMIN_ID_KEY = "AdminId";
         public const string CUSTOMER_ID_KEY = "CustomerId";
 
+        public static bool IsAdminSignedIn(this ISession session) =>
+            session.GetString(ADMIN_ID_KEY) != null;
         public static bool IsAdminSignedIn(this Controller controller) => 
-            controller.HttpContext.Session.GetString(ADMIN_ID_KEY) != null;
+            controller.HttpContext.Session.IsAdminSignedIn();
         public static void SignInAdmin(AdminViewModel model)
         {
             model.Session?.SetString(ADMIN_ID_KEY, model.Admin.Id.ToString());
