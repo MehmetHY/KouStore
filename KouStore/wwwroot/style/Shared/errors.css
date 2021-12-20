@@ -1,0 +1,5 @@
+﻿.input-error {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    text-align: right;
+}
