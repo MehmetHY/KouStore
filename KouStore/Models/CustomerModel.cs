@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using KouStore.Data;
-using KouStore.Managers;
 
 namespace KouStore.Models
 {
