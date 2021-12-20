@@ -27,6 +27,8 @@ namespace KouStore.Managers
                 action : 
                 controller.RedirectToAction("Index", "SignIn", new { Area = "Admin" });
 
+        public static int GetCurrentCustomerId(this ISession session) => 
+            session.IsCustomerSignedIn() ? int.Parse(session.GetString(CUSTOMER_ID_KEY)!) : 0;
         public static bool IsCustomerSignedIn(this Controller controller) =>
             controller.HttpContext.Session.IsCustomerSignedIn();
         public static bool IsCustomerSignedIn(this ISession session) =>

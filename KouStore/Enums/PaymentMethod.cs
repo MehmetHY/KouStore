@@ -4,7 +4,7 @@
     {
         VISA,
         MasterCard,
-        Paypal,
+        PayPal,
         Mobile
     }
 }

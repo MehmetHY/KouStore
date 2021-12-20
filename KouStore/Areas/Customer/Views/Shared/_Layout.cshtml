@@ -14,9 +14,12 @@
                 <input type="submit" value="Search" />
             </span>
         </form>
-        @if (@Context.Session.IsCustomerSignedIn())
+        @{
+            var customerId = @Context.Session.GetCurrentCustomerId();
+        }
+        @if (@customerId != 0)
         {
-            <a>Cart</a>
+            <a asp-action="Index" asp-controller="Cart" asp-route-id="@customerId">Go to Cart</a>
             <a>Logout</a>
         }
         else

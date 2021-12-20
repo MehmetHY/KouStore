@@ -13,6 +13,8 @@
 <h3>Total price: @Model.TotalPrice</h3>
 
 <form method="post" asp-action="Checkout">
-    <input type="hidden" asp-for="@Model"/>
+    <input type="hidden" asp-for="Customer!.Id" value="@Model.Customer!.Id"/>
+    <input type="hidden" asp-for="Customer!.Name" value="@Model.Customer!.Name"/>
+    <input type="hidden" asp-for="Payment" value="@Model.Payment"/>
     <input type="submit" value="Checkout"/>
 </form>

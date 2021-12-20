@@ -5,7 +5,7 @@
 <h1>@Model.Product.Title</h1>
 @if (@Model.IsInCard)
 {
-    <a>Go to Cart</a>
+    <a asp-action="Index" asp-controller="Cart" asp-route-id="@Model.Customer!.Id">Go to Cart</a>
 }
 else
 {

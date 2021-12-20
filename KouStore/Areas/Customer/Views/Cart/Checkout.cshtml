@@ -10,7 +10,20 @@
 }
 <h3>Total price: @Model.TotalPrice</h3>
 
+<h2>Choose payment method</h2>
 <form method="post" asp-action="Payment">
-    <input type="hidden" asp-for="@Model"/>
-    <input type="submit" value="Payment"/>
+    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.VISA"/>
+    <input type="submit" value="VISA"/>
+</form>
+<form method="post" asp-action="Payment">
+    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.MasterCard"/>
+    <input type="submit" value="MasterCard"/>
+</form>
+<form method="post" asp-action="Payment">
+    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.PayPal"/>
+    <input type="submit" value="PayPal"/>
+</form>
+<form method="post" asp-action="Payment">
+    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.Mobile"/>
+    <input type="submit" value="Mobile"/>
 </form>
