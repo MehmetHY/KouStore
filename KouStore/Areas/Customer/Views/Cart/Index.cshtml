@@ -1,0 +1,13 @@
+﻿@model CartViewModel
+@{ViewData["Title"] = "Cart";}
+
+<h1>Cart</h1>
+
+@foreach (var product in @Model!.Products)
+{
+    <span>@product.Title</span>
+    <a>Remove</a>
+    <br />
+}
+
+<input type="submit" formmethod="post" asp-action="Checkout" value="Checkout"/>

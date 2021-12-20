@@ -30,16 +30,10 @@ namespace KouStore.Areas.Customer.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult Checkout(CartViewModel cartModel)
-        {
-            return View(cartModel);
-        }
+        public IActionResult Checkout(CartViewModel cartModel) => View(cartModel);
         
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult Payment(CartViewModel cartModel)
-        {
-            return View(cartModel);
-        }
+        public IActionResult Payment(CartViewModel cartModel) => View(cartModel);
     }
 }
