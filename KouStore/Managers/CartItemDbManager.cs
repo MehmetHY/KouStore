@@ -8,6 +8,8 @@ namespace KouStore.Managers
         public static void AddRecord(this CartItemModel? cartItem, AppDbContext? db)
         {
             if (cartItem == null || db == null || cartItem.CustomerId == 0 || cartItem.ProductId == 0) return;
+            if (db.CartItems.Any(p => p.ProductId == cartItem.ProductId))
+                return;
             db.CartItems.Add(cartItem);
             db.SaveChanges();
         }
