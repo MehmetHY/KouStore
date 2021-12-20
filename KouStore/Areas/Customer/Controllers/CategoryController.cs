@@ -13,7 +13,7 @@ namespace KouStore.Areas.Customer.Controllers
 
         [Route("[Controller]/{categoryName}")]
         [HttpGet]
-        public IActionResult Index(string categoryName, [FromQuery] string? pageNumber)
+        public IActionResult Index(string categoryName, [FromQuery] int? pageNumber)
         {
             var model = new CategoryPageViewModel();
             return model.Setup(categoryName, pageNumber, _db) ?

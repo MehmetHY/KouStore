@@ -13,9 +13,7 @@ namespace KouStore.Areas.Customer.Controllers
 
         [Route("[Controller]")]
         [HttpGet]
-        public IActionResult Index([FromQuery(Name = "search")] string? searchString)
-        {
-            return View(new SearchPageViewModel(searchString?.Trim(), _db));
-        }
+        public IActionResult Index([FromQuery(Name = "search")] string? searchString, [FromQuery(Name = "pageNumber")] int? pageNumber) =>
+            View(new SearchPageViewModel(searchString?.Trim(), pageNumber, _db));
     }
 }

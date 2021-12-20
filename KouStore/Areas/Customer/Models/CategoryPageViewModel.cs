@@ -10,11 +10,11 @@ namespace KouStore.Areas.Customer.Models
         public override List<ProductModel> QueryModels { get; set; } = new();
         public CategoryModel? Category { get; set; }
         public CategoryPageViewModel() {}
-        public bool Setup(string categoryName, string? pageNumber, AppDbContext db) 
+        public bool Setup(string categoryName, int? pageNumber, AppDbContext db) 
         {
             Category = CategoryDbManager.GetCategory(categoryName, db);
             if (Category == null) return false;
-            if (pageNumber != null) CurrentPage = int.Parse(pageNumber);
+            if (pageNumber != null) CurrentPage = pageNumber.Value;
             int start = (CurrentPage - 1) * MaxModelSizePerPage;
             QueryModels = Category.GetProductsRange(db, start, MaxModelSizePerPage);
             TotalModelCount = Category.GetProductCount(db);

@@ -11,9 +11,10 @@ namespace KouStore.Areas.Customer.Models
         public string? SearchString { get; set; }
         public string Message { get; set; } = string.Empty;
         public SearchPageViewModel() {}
-        public SearchPageViewModel(string? searchString, AppDbContext? db) 
+        public SearchPageViewModel(string? searchString, int? pageNumber, AppDbContext? db) 
         {
             SearchString = searchString;
+            if (pageNumber != null) CurrentPage = pageNumber.Value;
             this.LoadSearchProducts(db);
         }
     }
