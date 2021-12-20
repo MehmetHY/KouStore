@@ -13,16 +13,11 @@ namespace KouStore.Areas.Customer.Controllers
 
         [Route("[Controller]/{categoryName}")]
         [HttpGet]
-        public IActionResult Index(string categoryName)
+        public IActionResult Index(string categoryName, [FromQuery] string? pageNumber)
         {
-            var category = CategoryDbManager.GetCategory(categoryName, _db);
-            if (category == null) return RedirectToAction("Index", "Home");
-            return View(new CategoryPageViewModel()
-            {
-                Category = category,
-                QueryModels = category.GetProductsRange(_db),
-                TotalModelCount = category.GetProductCount(_db)
-            }) ;
+            var model = new CategoryPageViewModel();
+            return model.Setup(categoryName, pageNumber, _db) ?
+                View(model) : RedirectToAction("Index", "Home");
         }
     }
 }
