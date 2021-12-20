@@ -1,0 +1,23 @@
+﻿@model CartViewModel
+@{ViewData["Title"] = "Payment";}
+
+<h1>Payment</h1>
+
+@switch (@Model!.Payment)
+{
+    case KouStore.Enums.PaymentMethod.VISA:
+        <h3>Payment with VISA hasn\'t been implemented yet!</h3>
+        break;
+    case KouStore.Enums.PaymentMethod.MasterCard:
+        <h3>Payment with VISA hasn\'t been implemented yet!</h3>
+        break;
+    case KouStore.Enums.PaymentMethod.Paypal:
+        <h3>Payment with VISA hasn\'t been implemented yet!</h3>
+        break;
+    case KouStore.Enums.PaymentMethod.Mobile:
+        <h3>Payment with VISA hasn\'t been implemented yet!</h3>
+        break;
+    default:
+        <h3>Payment hasn\'t been implemented yet!</h3>
+        break;
+}
