@@ -1,19 +1,50 @@
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
-    min-height: auto;
     background-color: var(--panel-color);
 }
-header .header-start {
+header .header-start,
+header .header-mid,
+header .header-end {
     display: flex;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 100%;
+}
+header .header-start *,
+header .header-mid *,
+header .header-end * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .header-mid form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+header .header-mid form input {
+    border-radius: 0;
+    height: 100%;
+}
+header .header-mid form .search-text {
+    min-width: 30vw;
 }
 header .header-button {
     padding: 1rem 1.2rem;
     background-color: var(--button-color);
     border-radius: 0;
+    flex-grow: 1;
+    min-width: 7rem;
 }
 header .header-button:hover {
     background-color: var(--button-color-hover-success);
+}
+header .header-start .logo {
+    width: 256px;
+    height: 64px;
+    background-image: url("../../image/koustore.svg");
 }
