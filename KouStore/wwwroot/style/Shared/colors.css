@@ -15,8 +15,10 @@
     --button-color: #00000070;
     --button-color-hover-success: #2bac2ba0;
     --button-color-active-success: #82ff82a0;
-    --button-color-hover-danger: #944837;
-    --button-color-active-danger: #ee502c;
+    --button-color-hover-danger: #944837a0;
+    --button-color-active-danger: #ee502ca0;
+    --button-color-hover-neutral: #555555a0;
+    --button-color-active-neutral: #929292a0;
 
     --error-color: #da755f;
 

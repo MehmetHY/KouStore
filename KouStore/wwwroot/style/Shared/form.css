@@ -44,19 +44,32 @@
     width: 100%;
 }
 .form form .button-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    gap: 5px;
 }
 .form form .button-container .button {
     width: 100%;
     font-size: 1.2rem;
+    text-align: center;
+}
+.form form .button-container .button-cancel {
+    font-size: 1rem;
 }
 .form form .button-container .button:hover {
     background-color: var(--button-color-hover-success);
 }
 .form form .button-container .button:active {
     background-color: var(--button-color-active-success);
+}
+.form form .button-container .button-cancel:hover {
+    background-color: var(--button-color-hover-neutral);
+}
+.form form .button-container .button-cancel:active {
+    background-color: var(--button-color-active-neutral);
 }
