@@ -7,6 +7,7 @@
     background-color: var(--button-color);
     color: var(--primary-text-color-1);
     padding: 0.5rem 1rem;
+    text-align: center;
 }
 .button-success:hover, .button-success:hover {
     background-color: var(--button-color-hover-success);

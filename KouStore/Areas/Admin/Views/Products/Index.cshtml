@@ -1,18 +1,32 @@
 ﻿@model KouStore.Models.CategoryModel
 
-<h1>@Model.Name</h1>
-<h3>Products</h3>
-
-<a asp-action="Create" asp-route-categoryName="@Model.Name">Create New Product</a>
-<br />
+<div class="products">
+    <div class="panel">
+        <h1>@Model!.Name</h1>
+        <a asp-action="Create" asp-route-categoryName="@Model.Name" class="button button-success">Create New Product</a>
+        <div class="product-container">
 
 @foreach (var product in @Model.Products)
 {
-    <img src="@product.GetImageDataURL()" width="64" height="64" />
-    <span>@product.Title</span>
-    <a asp-action="Update" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id">Update</a>
-    <a asp-action="Delete" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id">Delete</a>
-    <br />
+                
+            <div class="product">
+                <img class="header-img" src="@product.GetImageDataURL()" alt="product">
+                <div class="product-info">
+                    <div class="title-price">
+                        <h3 class="title">@product.Title</h3>
+                        <h3 class="price">@product.Price $</h3>
+                    </div>
+                    <div class="description">
+                        <p>@product.Description</p>
+                    </div>
+                </div>
+                <div class="update-delete">
+                    <a asp-action="Update" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id" class="button button-success">Update</a>
+                    <a asp-action="Delete" asp-route-categoryName="@Model.Name" asp-route-id="@product.Id" class="button button-danger">Delete</a>
+                </div>
+            </div>
 }
 
-<a asp-area="Admin" asp-controller="Categories" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>
