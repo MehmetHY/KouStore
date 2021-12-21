@@ -2,11 +2,11 @@
 @import "../shared/productcontainer.css";
 @import "../shared/pagenumbers.css";
 
-.home {
+.categoryproducts {
     width: 100%;
 }
 
-.home .panel {
+.categoryproducts .panel {
     width: 100%;
     flex-grow: 1;
     padding: 1rem 2rem;
@@ -16,16 +16,4 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.home .panel .category-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-}
-.home .panel .category-container a {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    margin: 5px;
 }
