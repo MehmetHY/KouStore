@@ -16,7 +16,7 @@
                 <div class="label-input">
                     <label asp-for="ViewModel.Product.Title"></label>
                     <input asp-for="ViewModel.Product.Title" />
-@if (!@Model.ViewModel.TitleValid)
+@if (!@Model!.ViewModel.TitleValid)
 {
                     <span class="input-error">@Model.ViewModel.TitleError</span>
 }

@@ -9,11 +9,11 @@ header {
 header .header-start {
     display: flex;
 }
-header .header-start .button {
+header .header-button {
     padding: 1rem 1.2rem;
     background-color: var(--button-color);
     border-radius: 0;
 }
-header .header-start .button:hover {
+header .header-button:hover {
     background-color: var(--button-color-hover-success);
 }

@@ -15,12 +15,16 @@
 </head>
 <body>
     <header>
-        <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
-        <a asp-action="Index" asp-controller="Home" asp-area="Customer">Store</a>
-        @if (@Context.Session.IsAdminSignedIn())
-        {
-            <a asp-action="Logout" asp-controller="SignIn" asp-area="Admin">Logout</a>
-        }
+        <div class="header-start">
+            <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="header-button">Dashboard</a>
+            <a asp-action="Index" asp-controller="Home" asp-area="Customer" class="header-button">Store</a>
+        </div>
+        <div class="header-end">
+            @if (@Context.Session.IsAdminSignedIn())
+            {
+                <a asp-action="Logout" asp-controller="SignIn" asp-area="Admin" class="header-button">Logout</a>
+            }
+        </div>
     </header>
     <main role="main">
         @RenderBody()
