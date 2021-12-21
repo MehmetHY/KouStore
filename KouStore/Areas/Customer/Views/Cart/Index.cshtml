@@ -1,27 +1,46 @@
 ﻿@model CartViewModel
 @{ViewData["Title"] = "Cart";}
 
-<h1>Cart</h1>
+<div class="cartpage">
 
-@foreach (var product in @Model!.Products)
+<div class="panel">
+    <h1 class="title">Cart</h1>
+
+@if (@Model!.Products.Count < 1)
 {
-    <span>@product.Title</span>
-    <span>@product.Price</span>
-    <a asp-action="Remove" asp-route-id="@product.Id">Remove</a>
-    <br />
+    <h2>Cart is empty!</h2>
 }
 
-@if (@Model.TotalPrice == decimal.Zero)
+    <div class="cartitems">
+@foreach (var product in @Model.Products)
 {
-    <p>Cart is empty.</p>
+        <div class="item">
+            <div class="img-title">
+                <img class="image" src="@product.GetImageDataURL()" alt="img" height="64" width="64">
+                <h2>@product.Title</h2>
+            </div>
+            <div class="price-remove">
+                <h2>@product.Price $</h2>
+                <a asp-action="Remove" asp-route-id="@product.Id" class="remove button button-danger">Remove</a>
+            </div>
+        </div>
 }
-else
+
+    </div>
+
+
+@if (@Model.Products.Count > 0)
 {
-<h3>Total price: @Model.TotalPrice</h3>
-    <form method="post" asp-action="Checkout">
+    <div class="total">
+        <h2>Total Price:</h2>
+        <h1>@Model.TotalPrice</h1>
+    </div>
+    <form class="form" method="post" asp-action="Checkout">
         <input type="hidden" asp-for="Customer!.Id" value="@Model.Customer!.Id"/>
         <input type="hidden" asp-for="Customer!.Name" value="@Model.Customer!.Name"/>
         <input type="hidden" asp-for="Payment" value="@Model.Payment"/>
-        <input type="submit" value="Checkout"/>
-    </form>
+        <input type="submit" value="Checkout" class="checkout button button-highlight"/>
+    </form>  
 }
+</div>
+</div>

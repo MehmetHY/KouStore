@@ -1,0 +1,72 @@
+.cartpage {
+    min-width: 50%;
+}
+
+.cartpage .panel {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cartpage .panel .title {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.cartpage .panel .cartitems {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+.cartpage .panel .total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-right: 1rem;
+}
+.cartpage .panel .form {
+    width: 100%;
+}
+.cartpage .panel .form .checkout {
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1rem;
+    width: 100%;
+}
+
+.cartpage .panel .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--subpanel-color);
+    padding: 10px 20px;
+    gap: 50px;
+}
+
+.cartpage .panel .item .img-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.cartpage .panel .item .img-title .image {
+    border-radius: 8px;
+    width: 64px;
+    height: 64px;
+}
+
+.cartpage .panel .item .price-remove{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
