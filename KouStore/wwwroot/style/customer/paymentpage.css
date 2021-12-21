@@ -1,0 +1,19 @@
+.paymentpage {
+}
+
+.paymentpage .panel {
+    width: 100%;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+    flex-direction: column;
+}
+.paymentpage .title {
+    margin-bottom: 20px;
+}
+.paymentpage .warning {
+    color: var(--error-color);
+}
