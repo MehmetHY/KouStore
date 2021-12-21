@@ -1,29 +1,61 @@
 ﻿@model CartViewModel
 @{ViewData["Title"] = "Checkout";}
 
-<h1>Checkout</h1>
+<div class="checkoutpage">
+    <div class="panel">
+        <h1 class="title">Checkout</h1>
+        <div class="platform">
+            <div class="info">
+                <h2 class="summary">Summary</h2>
+                <div class="list">
+
 
 @foreach (var product in @Model!.Products)
-{
-    <span>@product.Title</span>
-    <br />
+{                    
+                    <div class="item">
+                        <h3 class="item-title">@product.Title</h3>
+                        <h3>@product.Price $</h3>
+                    </div>
 }
-<h3>Total price: @Model.TotalPrice</h3>
 
-<h2>Choose payment method</h2>
-<form method="post" asp-action="Payment">
-    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.VISA"/>
-    <input type="submit" value="VISA"/>
-</form>
-<form method="post" asp-action="Payment">
-    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.MasterCard"/>
-    <input type="submit" value="MasterCard"/>
-</form>
-<form method="post" asp-action="Payment">
-    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.PayPal"/>
-    <input type="submit" value="PayPal"/>
-</form>
-<form method="post" asp-action="Payment">
-    <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.Mobile"/>
-    <input type="submit" value="Mobile"/>
-</form>
+
+                </div>
+
+                <div class="total">
+                    <h3>Total:</h3>
+                    <h2>@Model.TotalPrice $</h2>
+                </div>
+
+
+            </div>
+            <div class="payments">
+                <h2 class="methods-title">Payment Methods</h2>
+                <div class="methods-list">
+
+
+                    <form method="post" asp-action="Payment">
+                        <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.VISA"/>
+                        <input type="submit" class="visa" value="">
+                    </form>
+
+                    <form method="post" asp-action="Payment">
+                        <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.MasterCard"/>
+                        <input type="submit" class="mastercard" value="">
+                    </form>
+
+                    <form method="post" asp-action="Payment">
+                        <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.PayPal"/>
+                        <input type="submit" class="paypal" value="">
+                    </form>
+
+                    <form method="post" asp-action="Payment">
+                        <input type="hidden" asp-for="Payment" value="@KouStore.Enums.PaymentMethod.Mobile"/>
+                        <input type="submit" class="mobile" value="">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

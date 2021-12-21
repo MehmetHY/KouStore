@@ -1,0 +1,108 @@
+.checkoutpage {
+    min-width: 50%;
+}
+
+.checkoutpage .panel {
+    width: 100%;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+    display: flex;
+    padding: 1rem 2rem;
+    flex-direction: column;
+}
+
+.checkoutpage .panel .title {
+    margin-bottom: 2rem;
+}
+
+.checkoutpage .panel .platform {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 50px;
+}
+
+.checkoutpage .panel .platform .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.checkoutpage .panel .platform .info .summary {
+    margin-bottom: 1rem;
+}
+.checkoutpage .panel .platform .info .list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.checkoutpage .panel .platform .info .item {
+    background-color: var(--subpanel-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5rem;
+    max-width: 50vw;
+}
+.checkoutpage .panel .platform .info .item {
+    white-space: nowrap;
+}
+.checkoutpage .panel .platform .info .item .item-title {
+    overflow: hidden;
+}
+.checkoutpage .panel .platform .info .total {
+    background-color: var(--subpanel-color);
+    padding: 1rem;
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.checkoutpage .payments {
+    width: 100%;
+}
+.checkoutpage .payments .methods-title {
+    margin-bottom: 1rem;
+}
+.checkoutpage .payments .methods-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+.checkoutpage .payments .methods-list form {
+    width: 100%;
+}
+.checkoutpage .payments .methods-list form .visa {
+    background-image: url("../../image/visa.svg");
+    width: 256px;
+    height: 128px;
+    cursor: pointer;
+    border: none;
+}
+.checkoutpage .payments .methods-list form .mastercard {
+    background-image: url("../../image/mastercard.svg");
+    width: 256px;
+    height: 128px;
+    cursor: pointer;
+    border: none;
+}
+.checkoutpage .payments .methods-list form .paypal {
+    background-image: url("../../image/paypal.svg");
+    width: 256px;
+    height: 128px;
+    cursor: pointer;
+    border: none;
+}
+.checkoutpage .payments .methods-list form .mobile {
+    background-image: url("../../image/mobile.svg");
+    width: 256px;
+    height: 128px;
+    cursor: pointer;
+    border: none;
+}
