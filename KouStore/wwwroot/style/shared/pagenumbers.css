@@ -1,0 +1,17 @@
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.page-numbers a {
+    border-radius: 0;
+    padding: 1rem 2rem;
+    min-width: 8rem;
+}
+.page-numbers a.current-page-number {
+    background-color: var(--button-color-hover-success);
+}
+.page-numbers a.current-page-number:hover {
+    background-color: var(--button-color-active-success);
+}
