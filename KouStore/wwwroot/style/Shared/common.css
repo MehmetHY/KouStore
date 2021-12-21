@@ -1,4 +1,10 @@
-﻿* {
+﻿@import "colors.css";
+@import "buttons.css";
+@import "inputs.css";
+@import "form.css";
+@import "errors.css";
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
