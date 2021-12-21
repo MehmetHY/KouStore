@@ -9,3 +9,15 @@ input {
 input:focus {
     background-color: var(--input-bg-color-focus);
 }
+input[type=file] {
+    cursor: pointer;
+}
+::-webkit-file-upload-button {
+    background-color: var(--button-color-small);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+::-webkit-file-upload-button:hover { 
+    background-color: var(--button-color-hover-success);
+}

@@ -1,40 +1,53 @@
 ﻿@model KouStore.Models.FormModel<KouStore.Areas.Admin.Models.ProductViewModel>
 
-<h1>@Model.ViewModel.Category.Name</h1>
-<h3>Create Product</h3>
 
-<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-formModel="@Model">
-    <input asp-for="ViewModel.Category.Name" type="hidden" />
-    <input asp-for="ViewModel.Product.CategoryId" value="@Model.ViewModel.Category.Id" type="hidden" />
-    <label asp-for="ViewModel.Product.Title"></label>
-    <input asp-for="ViewModel.Product.Title" />
-    @if (!@Model.ViewModel.TitleValid)
-    {
-        <p>@Model.ViewModel.TitleError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Product.Description"></label>
-    <input asp-for="ViewModel.Product.Description" />
-    @if (!@Model.ViewModel.DescriptionValid)
-    {
-        <p>@Model.ViewModel.DescriptionError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Product.Image"></label>
-    <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
-    @if (!@Model.ViewModel.ImageValid)
-    {
-        <p>@Model.ViewModel.ImageError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Product.Price"></label>
-    <input asp-for="ViewModel.Product.Price" />
-    @if (!@Model.ViewModel.PriceValid)
-    {
-        <p>@Model.ViewModel.PriceError</p>
-    }
-    <br />
-    <input type="submit" value="Create" />
-    <br />
-</form>
-<a asp-action="Index" asp-route-categoryName="@Model.ViewModel.Category.Name">Back</a>
+
+
+
+<div class="createproduct">
+    <div class="form">
+        <h1>Create Product</h1>
+        <form form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-formModel="@Model">
+            <input asp-for="ViewModel.Category.Name" type="hidden" />
+            <input asp-for="ViewModel.Product.CategoryId" value="@Model.ViewModel.Category.Id" type="hidden" />
+            <div class="inputs">
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Title"></label>
+                    <input asp-for="ViewModel.Product.Title" />
+@if (!@Model.ViewModel.TitleValid)
+{
+                    <span class="input-error">@Model.ViewModel.TitleError</span>
+}
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Description"></label>
+                    <input asp-for="ViewModel.Product.Description" />
+@if (!@Model.ViewModel.DescriptionValid)
+{
+                    <span class="input-error">@Model.ViewModel.DescriptionError</span>
+}
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Image"></label>
+                    <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
+@if (!@Model.ViewModel.ImageValid)
+{
+                    <span class="input-error">@Model.ViewModel.ImageError</span>
+}
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Price"></label>
+                    <input asp-for="ViewModel.Product.Price" />
+@if (!@Model.ViewModel.PriceValid)
+{
+                    <span class="input-error">@Model.ViewModel.PriceError</span>
+}
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="button" type="submit" value="Create" />
+                <a asp-action="Index" asp-route-categoryName="@Model.ViewModel.Category.Name" class="button button-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
