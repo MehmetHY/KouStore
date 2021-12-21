@@ -1,29 +1,59 @@
 ﻿@model KouStore.Models.FormModel<KouStore.Areas.Admin.Models.ProductViewModel>
 
-<h1>@Model.ViewModel.Category.Name</h1>
-<h3>Update Product</h3>
 
-<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Update" asp-route-formModel="@Model">
-    <input asp-for="ViewModel.Category.Name" type="hidden" />
-    <input asp-for="ViewModel.Product.Id" type="hidden" />
-    <input asp-for="ViewModel.Product.CategoryId" type="hidden" />
-    <input asp-for="ViewModel.Product.Image" type="hidden" />
-    <label asp-for="ViewModel.Product.Title"></label>
-    <input asp-for="ViewModel.Product.Title" />
-    <br />
-    <label asp-for="ViewModel.Product.Description"></label>
-    <input asp-for="ViewModel.Product.Description" />
-    <br />
-    <label>Current Image</label>
-    <img src="@Model.ViewModel.Product.GetImageDataURL()" width="256" height="256" />
-    <br />
-    <label>New Image</label>
-    <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
-    <br />
-    <label asp-for="ViewModel.Product.Price"></label>
-    <input asp-for="ViewModel.Product.Price" />
-    <br />
-    <input type="submit" value="Update" />
-    <br />
-</form>
-<a asp-action="Index" asp-route-categoryName="@Model.ViewModel.Category.Name">Back</a>
+
+<div class="updateproduct">
+    <div class="form">
+        <h1>Update Product</h1>
+        <form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Update" asp-route-formModel="@Model">
+
+            <input asp-for="ViewModel.Category.Name" type="hidden" />
+            <input asp-for="ViewModel.Product.Id" type="hidden" />
+            <input asp-for="ViewModel.Product.CategoryId" type="hidden" />
+            <input asp-for="ViewModel.Product.Image" type="hidden" />
+
+            <div class="inputs">
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Title"></label>
+                    <input asp-for="ViewModel.Product.Title" />
+@if (!@Model.ViewModel.TitleValid)
+{
+                    <span class="input-error">@Model.ViewModel.TitleError</span>
+}
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Description"></label>
+                    <input asp-for="ViewModel.Product.Description" />
+@if (!@Model.ViewModel.DescriptionValid)
+{
+                    <span class="input-error">@Model.ViewModel.DescriptionError</span>
+}
+                </div>
+                <div class="label-preview-image">
+                    <label>Current Image</label>
+                    <img src="@Model.ViewModel.Product.GetImageDataURL()" alt="img">
+                </div>
+                <div class="label-input">
+                    <label>New Image</label>
+                    <input asp-for="ViewModel.ImageFile" accept="image/jpeg" />
+@if (!@Model.ViewModel.ImageValid)
+{                        
+                    <span class="input-error">@Model.ViewModel.ImageError</span>
+}
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Product.Price"></label>
+                    <input asp-for="ViewModel.Product.Price" />
+@if (!@Model.ViewModel.PriceValid)
+{                        
+                    <span class="input-error">@Model.ViewModel.PriceError</span>
+}
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="button" type="submit" value="Update" />
+                <a asp-action="Index" asp-route-categoryName="@Model.ViewModel.Category.Name" class="button button-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

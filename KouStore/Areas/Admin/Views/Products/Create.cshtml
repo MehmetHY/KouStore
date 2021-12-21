@@ -1,15 +1,11 @@
 ﻿@model KouStore.Models.FormModel<KouStore.Areas.Admin.Models.ProductViewModel>
 
-
-
-
-
 <div class="createproduct">
     <div class="form">
         <h1>Create Product</h1>
         <form form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Products" asp-action="Create" asp-route-formModel="@Model">
             <input asp-for="ViewModel.Category.Name" type="hidden" />
-            <input asp-for="ViewModel.Product.CategoryId" value="@Model.ViewModel.Category.Id" type="hidden" />
+            <input asp-for="ViewModel.Product.CategoryId" value="@Model!.ViewModel.Category.Id" type="hidden" />
             <div class="inputs">
                 <div class="label-input">
                     <label asp-for="ViewModel.Product.Title"></label>
