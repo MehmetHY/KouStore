@@ -4,4 +4,7 @@
     transition: background-color 0.2s;
     cursor: pointer;
     box-shadow: 0 0 10px 1px var(--shadow-color);
+    background-color: var(--button-color);
+    color: var(--primary-text-color-1);
+    padding: 0.5rem 1rem;
 }

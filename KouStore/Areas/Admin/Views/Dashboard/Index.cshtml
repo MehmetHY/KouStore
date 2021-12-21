@@ -1,6 +1,9 @@
-﻿<h1>Dashboard</h1>
-<a asp-controller="Categories" asp-action="Index">Manage Products</a>
-<br />
-<a asp-action="">Manage Customers</a>
-<br />
-<a asp-area="Admin" asp-controller="SignIn" asp-action="Logout">Log out</a>
+﻿<div class="dashboard">
+    <div class="panel">
+        <h1>Dashboard</h1>
+        <div class="menus">
+            <a class="button big-menu-button" asp-controller="Categories" asp-action="Index">Manage Products</a>
+            <a class="button big-menu-button" asp-action="">Manage Customers</a>
+        </div>
+    </div>
+</div>

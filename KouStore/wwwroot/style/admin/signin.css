@@ -1,0 +1,10 @@
+﻿@import "../shared/common.css";
+
+.admin-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+}
