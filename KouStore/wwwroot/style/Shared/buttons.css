@@ -1,0 +1,7 @@
+﻿.button, button {
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+}
