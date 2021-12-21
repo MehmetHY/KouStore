@@ -1,4 +1,4 @@
-﻿header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,17 +6,14 @@
     min-height: auto;
     background-color: var(--panel-color);
 }
-
-    header .header-start {
-        display: flex;
-    }
-
-        header .header-start .button {
-            padding: 1rem 1.2rem;
-            background-color: var(--button-color);
-            border-radius: 0;
-        }
-
-            header .header-start .button:hover {
-                background-color: var(--button-color-hover-success);
-            }
+header .header-start {
+    display: flex;
+}
+header .header-start .button {
+    padding: 1rem 1.2rem;
+    background-color: var(--button-color);
+    border-radius: 0;
+}
+header .header-start .button:hover {
+    background-color: var(--button-color-hover-success);
+}

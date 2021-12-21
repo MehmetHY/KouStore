@@ -1,4 +1,4 @@
-﻿.button, button {
+.button, button {
     border: none;
     border-radius: 8px;
     transition: background-color 0.2s;
@@ -7,4 +7,10 @@
     background-color: var(--button-color);
     color: var(--primary-text-color-1);
     padding: 0.5rem 1rem;
+}
+.button-success:hover, .button-success:hover {
+    background-color: var(--button-color-hover-success);
+}
+.button-danger:hover, .button-danger:hover {
+    background-color: var(--button-color-hover-danger);
 }

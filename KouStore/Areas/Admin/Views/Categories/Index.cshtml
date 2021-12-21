@@ -1,18 +1,27 @@
 ﻿@model List<KouStore.Models.CategoryModel>
 
-<h1>Manage Categories</h1>
 
-<a asp-action="Create">Create New Category</a>
-<br />
-<br />
 
-@foreach (var category in @Model)
+
+
+
+<div class="managecategories">
+    <div class="panel">
+    <h1>Manage Categories</h1>
+    <a asp-action="Create" class="button button-success create-button">Create New Category</a>
+
+@foreach (var category in @Model!)
 {
-    <a asp-area="Admin" asp-controller="Products" asp-action="Index" asp-route-categoryName="@category.Name">@category.Name</a>
-    <a asp-action="Update" asp-route-id="@category.Id">Update</a>
-    <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
-    <br />
-}
 
-<br />
-<a asp-controller="Dashboard" asp-action="Index">Back</a>
+    <div class="category">
+        <h3>@category.Name</h3>
+        <div class="buttons">
+            <a class="button button-success" asp-area="Admin" asp-controller="Products" asp-action="Index" asp-route-categoryName="@category.Name">Manage Products</a>
+            <a class="button button-success" asp-action="Update" asp-route-id="@category.Id">Update</a>
+            <a class="button button-danger" asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+        </div>
+    </div>
+}
+    
+    </div>
+</div>

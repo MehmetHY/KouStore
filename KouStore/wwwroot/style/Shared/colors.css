@@ -1,15 +1,23 @@
-﻿
+
 :root {
     --text-color: #ffffff;
     --text-alt-color: #000000;
+
     --panel-color: #00000050;
     --subpanel-color: #000000a0;
+
     --input-bg-color: #00000050;
     --input-border-color: #bababa50;
     --input-bg-color-focus: #000000;
+
     --shadow-color: #00000030;
+
     --button-color: #00000070;
     --button-color-hover-success: #2bac2ba0;
     --button-color-active-success: #82ff82a0;
+    --button-color-hover-danger: #944837;
+    --button-color-active-danger: #ee502c;
+
     --error-color: #da755f;
+
 }

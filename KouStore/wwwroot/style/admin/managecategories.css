@@ -1,0 +1,36 @@
+@import "../shared/common.css";
+
+.managecategories .panel {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.managecategories .panel h1 {
+    margin-bottom: 2rem;
+}
+
+.managecategories .panel .category {
+    background-color: var(--subpanel-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 5rem;
+    padding: 1rem 2rem;
+}
+.managecategories .panel .category h3 {
+    min-width: 20vw;
+}
+
+.managecategories .panel .create-button {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
