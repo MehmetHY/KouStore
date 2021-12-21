@@ -3,23 +3,34 @@
     ViewData["Title"] = "Sign in";
 }
 
-<h1>Sign in</h1>
 
-<form asp-action="ValidateSignIn" asp-route-tController="@ViewBag.LastController" asp-route-tAction="@ViewBag.LastAction" asp-route-tId="@ViewBag.LastId">
-    <label asp-for="ViewModel.Customer.Name"></label>
-    <input asp-for="ViewModel.Customer.Name" />
-    @if (!@Model!.ViewModel.NameValid)
-    {
-        <p>@Model.ViewModel.NameError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Customer.Password"></label>
-    <input asp-for="ViewModel.Customer.Password" />
-    @if (!@Model!.ViewModel.PasswordValid)
-    {
-        <p>@Model.ViewModel.PasswordError</p>
-    }
-    <br />
-    <input type="submit" value="Sign in" />
-</form>
-<a asp-action="Register">Register</a>
+<div class="signin">
+    <div class="form">
+        <h1>Sign in</h1>
+        <form asp-action="ValidateSignIn" asp-route-tController="@ViewBag.LastController" asp-route-tAction="@ViewBag.LastAction" asp-route-tId="@ViewBag.LastId">
+            <div class="inputs">
+                <div class="label-input">
+                    <label asp-for="ViewModel.Customer.Name"></label>
+                    <input asp-for="ViewModel.Customer.Name" />
+                    @if (!@Model!.ViewModel.NameValid)
+                    {
+                        <span class="input-error">@Model.ViewModel.NameError</span>
+                    }
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Customer.Password"></label>
+                    <input asp-for="ViewModel.Customer.Password" />
+                    @if (!@Model!.ViewModel.PasswordValid)
+                    {
+                        <span  class="input-error">@Model.ViewModel.PasswordError</span>
+                    }
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="button" type="submit" value="Sign in" />
+                <h3 class="or">or</h3>
+                <a class="button button-neutral" asp-action="Register">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
