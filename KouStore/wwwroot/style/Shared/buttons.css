@@ -18,3 +18,12 @@
 .button-neutral:hover {
     background-color: var(--button-color-hover-neutral);
 }
+.button.button-highlight {
+    background-color: var(--button-color-hover-success);
+}
+.button.button-highlight:hover {
+    background-color: var(--button-color-active-success);
+}
+.button.button-highlight:active {
+    background-color: var(--button-color-active-highlight);
+}
