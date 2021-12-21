@@ -1,19 +1,25 @@
 ﻿@using KouStore.Areas.Admin.Models
 @model KouStore.Models.FormModel<CategoryViewModel>
 
-<h1>Update Category</h1>
-
-<form method="post" asp-area="Admin" asp-controller="Categories" asp-action="Update" >
-    <input asp-for="ViewModel.Category.Id" type="hidden" />
-    <label asp-for="ViewModel.Category.Name"></label>
-    <input asp-for="ViewModel.Category.Name" />
-    @if (!@Model.ViewModel.NameValid)
-    {
-        <p>@Model.ViewModel.NameError</p>
-    }
-    <br />
-    <input type="submit" value="Update" />
-</form>
-
-<br />
-<a asp-action="Index">Back</a>
+<div class="createcategory">
+    <div class="form">
+        <h1>Update Category</h1>
+        <form method="post" asp-area="Admin" asp-controller="Categories" asp-action="Update" >
+            <div class="inputs">
+                <div class="label-input">
+                    <input asp-for="ViewModel.Category.Id" type="hidden" />
+                    <label asp-for="ViewModel.Category.Name"></label>
+                    <input asp-for="ViewModel.Category.Name" />
+@if (!@Model.ViewModel.NameValid)
+{
+                    <span class="input-error">@Model.ViewModel.NameError</span>
+}
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="button" type="submit" value="Update" />
+                <a asp-action="Index" class="button button-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
