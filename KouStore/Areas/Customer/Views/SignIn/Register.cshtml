@@ -3,29 +3,39 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
-
-<form method="post" asp-action="ValidateRegister">
-    <label asp-for="ViewModel.Customer.Name"></label>
-    <input asp-for="ViewModel.Customer.Name" />
-    @if (!@Model!.ViewModel.NameValid)
-    {
-        <p>@Model.ViewModel.NameError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.Customer.Password"></label>
-    <input asp-for="ViewModel.Customer.Password" />
-    @if (!@Model!.ViewModel.PasswordValid)
-    {
-        <p>@Model.ViewModel.PasswordError</p>
-    }
-    <br />
-    <label asp-for="ViewModel.ConfirmPassword"></label>
-    <input asp-for="ViewModel.ConfirmPassword" />
-    @if (!@Model!.ViewModel.ConfirmPasswordValid)
-    {
-        <p>@Model.ViewModel.ConfirmPasswordError</p>
-    }
-    <br />
-    <input type="submit" value="Register" />
-</form>
+<div class="register">
+    <div class="form">
+        <h1>Register</h1>
+        <form method="post" asp-action="ValidateRegister">
+            <div class="inputs">
+                <div class="label-input">
+                    <label asp-for="ViewModel.Customer.Name"></label>
+                    <input asp-for="ViewModel.Customer.Name" />
+                    @if (!@Model!.ViewModel.NameValid)
+                    {
+                        <span class="input-error">@Model.ViewModel.NameError</span>
+                    }
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.Customer.Password"></label>
+                    <input asp-for="ViewModel.Customer.Password" />
+                    @if (!@Model!.ViewModel.PasswordValid)
+                    {
+                        <span class="input-error">@Model.ViewModel.PasswordError</span>
+                    }
+                </div>
+                <div class="label-input">
+                    <label asp-for="ViewModel.ConfirmPassword"></label>
+                    <input asp-for="ViewModel.ConfirmPassword" />
+                    @if (!@Model!.ViewModel.ConfirmPasswordValid)
+                    {
+                        <span class="input-error">@Model.ViewModel.ConfirmPasswordError</span>
+                    }
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="button" type="submit" value="Register" />
+            </div>
+        </form>
+    </div>
+</div>
