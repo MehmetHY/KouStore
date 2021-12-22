@@ -1,0 +1,23 @@
+﻿@model List<CustomerModel>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="managecustomers">
+    <div class="panel">
+        <h1>Manage Customers</h1>
+
+@foreach (var customer in @Model!)
+{
+            
+        <div class="customer">
+            <h3 class="customer-name">@customer.Name</h3>
+            <div class="buttons">
+                <a class="button button-danger" asp-action="Delete" asp-route-id="@customer.Id">Delete</a>
+            </div>
+        </div>
+}
+
+
+    </div>
+</div>

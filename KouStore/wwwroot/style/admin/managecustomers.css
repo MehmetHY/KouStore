@@ -1,0 +1,32 @@
+.managecustomers .panel {
+    width: 100%;
+    max-width: 60vw;
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px 1px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.managecustomers .panel h1 {
+    margin-bottom: 2rem;
+}
+
+.managecustomers .panel .customer {
+    background-color: var(--subpanel-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 5rem;
+    padding: 1rem 2rem;
+}
+.managecustomers .panel .customer h3 {
+    min-width: 20vw;
+}
+.managecustomers .customer-name {
+    overflow: hidden;
+}
