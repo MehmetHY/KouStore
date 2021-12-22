@@ -1,8 +1,23 @@
 footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     min-height: auto;
     background-color: var(--panel-color);
+    padding: 1rem;
+}
+footer .github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+footer .github-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+footer .github:hover {
+    text-decoration: underline;
 }
